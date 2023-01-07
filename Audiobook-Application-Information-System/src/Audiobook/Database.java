@@ -60,7 +60,6 @@ public class Database {
 		
 	}
 	
-	
 	public int rental(String user_ssn, String bookid, java.sql.Date rentDay, int dayLimit) throws Exception{
 		//daha bitmedi
 		CallableStatement cstmt = connection.prepareCall("begin ? := calculateprice(?,?); end;");
@@ -74,5 +73,6 @@ public class Database {
 		System.out.print("Result: " + result);
 		return result;
 	}
+	
 
 }

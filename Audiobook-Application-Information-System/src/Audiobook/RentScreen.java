@@ -9,7 +9,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RentScreen extends JFrame {
 
@@ -46,7 +49,7 @@ public class RentScreen extends JFrame {
 		
 		JLabel lblBookName = new JLabel("BOOK NAME:");
 		lblBookName.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		lblBookName.setBounds(70, 150, 250, 40);
+		lblBookName.setBounds(70, 150, 273, 40);
 		contentPane.add(lblBookName);
 		
 		JLabel lblAuthor = new JLabel("AUTHOR:");
@@ -96,5 +99,25 @@ public class RentScreen extends JFrame {
 		btnRent.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
 		btnRent.setBounds(629, 300, 85, 40);
 		contentPane.add(btnRent);
+		
+		JButton btnGoBack = new JButton("");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BooksScreen bookScreen;
+				try {
+					bookScreen = new BooksScreen();
+					bookScreen.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				dispose();
+			}
+		});
+		btnGoBack.setIcon(new ImageIcon(BalanceScreen.class.getResource("/icons/arrow.png")));
+		btnGoBack.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		btnGoBack.setBounds(10, 10, 44, 30);
+		contentPane.add(btnGoBack);
 	}
 }

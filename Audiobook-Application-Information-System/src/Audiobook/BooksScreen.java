@@ -58,8 +58,9 @@ public class BooksScreen extends JFrame {
 		timeComboBox.setBounds(232, 25, 200, 30);
 		contentPane.add(timeComboBox);
 		
-		JButton btnFilter = new JButton("New button");
-		btnFilter.setBounds(442, 24, 31, 30);
+		JButton btnFilter = new JButton("FILTER");
+		btnFilter.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+		btnFilter.setBounds(442, 24, 96, 30);
 		contentPane.add(btnFilter);
 		
 		searchField = new JTextField();

@@ -59,7 +59,7 @@ public class MenuScreen extends JFrame {
 				dispose();
 			}
 		});
-		btnBooks.setBounds(345, 245, 300, 50);
+		btnBooks.setBounds(345, 162, 300, 50);
 		contentPane.add(btnBooks);
 		
 		JButton btnBalance = new JButton("BALANCE");
@@ -78,7 +78,7 @@ public class MenuScreen extends JFrame {
 				dispose();
 			}
 		});
-		btnBalance.setBounds(345, 385, 300, 50);
+		btnBalance.setBounds(345, 302, 300, 50);
 		contentPane.add(btnBalance);
 		
 		JButton btnMyBooks = new JButton("MY BOOKS");
@@ -97,7 +97,7 @@ public class MenuScreen extends JFrame {
 			}
 		});
 		btnMyBooks.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		btnMyBooks.setBounds(345, 315, 300, 50);
+		btnMyBooks.setBounds(345, 232, 300, 50);
 		contentPane.add(btnMyBooks);
 		
 		JLabel lblWelcome = new JLabel("WELCOME, USER");
@@ -116,17 +116,26 @@ public class MenuScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				MainScreen mainScreen;
 				try {
-					// log out islemi gelicek
+					mainScreen = new MainScreen();
+					setVisible(false);
+					mainScreen.setVisible(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				mainScreen = new MainScreen();
-				mainScreen.setVisible(true);
 				dispose();
 			}
 		});
 		btnLogOut.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		btnLogOut.setBounds(345, 455, 300, 50);
+		btnLogOut.setBounds(345, 372, 300, 50);
 		contentPane.add(btnLogOut);
+		
+		JButton btnDeleteUser = new JButton("DELETE ACCOUNT");
+		btnDeleteUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDeleteUser.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
+		btnDeleteUser.setBounds(345, 440, 300, 50);
+		contentPane.add(btnDeleteUser);
 	}
 }
