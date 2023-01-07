@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MyBooksScreen extends JFrame {
 
@@ -48,6 +50,20 @@ public class MyBooksScreen extends JFrame {
 		contentPane.add(listBooks);
 		
 		JButton btnGoBack = new JButton("GO BACK");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuScreen menuScreen;
+				try {
+					menuScreen = new MenuScreen();
+					menuScreen.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				dispose();
+			}
+		});
 		btnGoBack.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
 		btnGoBack.setBounds(435, 520, 115, 30);
 		contentPane.add(btnGoBack);

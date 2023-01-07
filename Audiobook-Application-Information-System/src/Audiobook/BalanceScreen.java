@@ -13,6 +13,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BalanceScreen extends JFrame {
 
@@ -74,6 +76,20 @@ public class BalanceScreen extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnGoBack = new JButton("");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuScreen menuScreen;
+				try {
+					menuScreen = new MenuScreen();
+					menuScreen.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				dispose();
+			}
+		});
 		btnGoBack.setIcon(new ImageIcon(BalanceScreen.class.getResource("/icons/arrow.png")));
 		btnGoBack.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
 		btnGoBack.setBounds(10, 10, 44, 30);

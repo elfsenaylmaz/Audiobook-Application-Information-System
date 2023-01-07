@@ -49,12 +49,12 @@ public class BooksScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JComboBox categoryComboBox = new JComboBox(new String[] {"Biyografi"});
-		categoryComboBox.setFont(new Font("Tw Cen MT", Font.BOLD, 10));
+		categoryComboBox.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		categoryComboBox.setBounds(25, 25, 200, 30);
 		contentPane.add(categoryComboBox);
 		
 		JComboBox timeComboBox = new JComboBox<>();
-		timeComboBox.setFont(new Font("Tw Cen MT", Font.BOLD, 10));
+		timeComboBox.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		timeComboBox.setBounds(232, 25, 200, 30);
 		contentPane.add(timeComboBox);
 		
@@ -63,6 +63,7 @@ public class BooksScreen extends JFrame {
 		contentPane.add(btnFilter);
 		
 		searchField = new JTextField();
+		searchField.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		searchField.setBounds(724, 25, 200, 30);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
@@ -76,6 +77,20 @@ public class BooksScreen extends JFrame {
 		contentPane.add(listBooks);
 		
 		JButton btnNewButton = new JButton("GO BACK");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuScreen menuScreen;
+				try {
+					menuScreen = new MenuScreen();
+					menuScreen.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				dispose();
+			}
+		});
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
 		btnNewButton.setBounds(25, 518, 114, 30);
 		contentPane.add(btnNewButton);
@@ -83,6 +98,16 @@ public class BooksScreen extends JFrame {
 		JButton btnBuy = new JButton("RENT");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RentScreen rentScreen;
+				try {
+					rentScreen = new RentScreen();
+					rentScreen.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				dispose();
 			}
 		});
 		btnBuy.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
