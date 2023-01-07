@@ -26,21 +26,21 @@ public class MenuScreen extends JFrame {
 		
 		JButton btnBooks = new JButton("BOOKS");
 		btnBooks.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		/*btnBooks.addActionListener(new ActionListener() {
+		btnBooks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
-		});*/
+		});
 		btnBooks.setBounds(345, 245, 300, 50);
 		contentPane.add(btnBooks);
 		
 		JButton btnBalance = new JButton("BALANCE");
 		btnBalance.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		/*btnBalance.addActionListener(new ActionListener() {
+		btnBalance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
-		});*/
+		});
 		btnBalance.setBounds(345, 385, 300, 50);
 		contentPane.add(btnBalance);
 		
