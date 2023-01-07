@@ -17,7 +17,9 @@ public class Sign_upScreen extends JFrame {
 	private JTextField password;
 	private JTextField surname;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Sign_upScreen() {
+		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setTitle("Storytel");
 		User user = new User();
 		
@@ -127,13 +129,13 @@ public class Sign_upScreen extends JFrame {
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("FEMALE");
 		rdbtnNewRadioButton.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
-		rdbtnNewRadioButton.setBackground(new Color(143, 188, 143));
+		rdbtnNewRadioButton.setBackground(new Color(255, 204, 153));
 		rdbtnNewRadioButton.setBounds(189, 214, 78, 28);
 		getContentPane().add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("MALE");
 		rdbtnNewRadioButton_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
-		rdbtnNewRadioButton_1.setBackground(new Color(143, 188, 143));
+		rdbtnNewRadioButton_1.setBackground(new Color(255, 204, 153));
 		rdbtnNewRadioButton_1.setBounds(263, 214, 65, 28);
 		getContentPane().add(rdbtnNewRadioButton_1);
 		
@@ -141,7 +143,7 @@ public class Sign_upScreen extends JFrame {
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("OTHER");
 		rdbtnNewRadioButton_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
-		rdbtnNewRadioButton_2.setBackground(new Color(143, 188, 143));
+		rdbtnNewRadioButton_2.setBackground(new Color(255, 204, 153));
 		rdbtnNewRadioButton_2.setBounds(327, 214, 72, 28);
 		getContentPane().add(rdbtnNewRadioButton_2);
 		rdbtnNewRadioButton.addActionListener((ActionListener) new ActionListener() {
@@ -167,7 +169,7 @@ public class Sign_upScreen extends JFrame {
 		
 		
 		JButton btnNewButton = new JButton("REGISTER");
-		btnNewButton.setBackground(new Color(143, 188, 143));
+		btnNewButton.setBackground(Color.ORANGE);
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -238,7 +240,7 @@ public class Sign_upScreen extends JFrame {
 		});
 		
 		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		btnNewButton_2.setBackground(new Color(143, 188, 143));
+		btnNewButton_2.setBackground(new Color(255, 204, 102));
 		btnNewButton_2.setBounds(10, 10, 97, 32);
 		getContentPane().add(btnNewButton_2);
 		
@@ -251,17 +253,23 @@ public class Sign_upScreen extends JFrame {
 		lblNewLabel.setBounds(10, 11, 984, 561);
 		getContentPane().add(lblNewLabel);
 		
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel());
+		Object[] days = {"day",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+		Object[] months = {"month",1,2,3,4,5,6,7,8,9,10,11,12};
+		Object[] years = {"year",1,2,3,4,5,6,7,8,9,10,11,12};
+		comboBox.setModel(new DefaultComboBoxModel(days));
 		comboBox.setBounds(189, 244, 78, 32);
 		getContentPane().add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(252, 244, 78, 32);
+		comboBox_1.setModel(new DefaultComboBoxModel(months));
 		getContentPane().add(comboBox_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(321, 244, 78, 32);
+		comboBox_2.setModel(new DefaultComboBoxModel(years));
 		getContentPane().add(comboBox_2);
 	}
 }

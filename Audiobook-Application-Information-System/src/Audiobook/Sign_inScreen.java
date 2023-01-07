@@ -23,6 +23,7 @@ public class Sign_inScreen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -85,6 +86,10 @@ public class Sign_inScreen extends JFrame {
 		contentPane.add(textField_1);
 		
 		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBackground(new Color(255, 204, 153));
 		
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 20));

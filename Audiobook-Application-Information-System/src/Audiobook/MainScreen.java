@@ -24,6 +24,7 @@ public class MainScreen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -79,6 +80,7 @@ public class MainScreen extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBackground(Color.DARK_GRAY);
 		lblNewLabel_1.setBounds(0, 11, 974, 561);
 		contentPane.add(lblNewLabel_1);
 	}
