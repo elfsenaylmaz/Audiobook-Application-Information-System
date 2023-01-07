@@ -1,10 +1,15 @@
 package Audiobook;
 
 import java.awt.EventQueue;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
+		
+		Database d = new Database();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
