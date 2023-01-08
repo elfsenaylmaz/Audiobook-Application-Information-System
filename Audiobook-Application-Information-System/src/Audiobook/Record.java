@@ -5,4 +5,5 @@ public class Record {
 	public String author;
 	public String narrator;
 	public int time;
+
 }

@@ -7,8 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;    
-import java.sql.Array;
+import java.time.LocalDateTime;
 public class Database {
 
     public Connection connection;
@@ -123,10 +122,22 @@ public class Database {
 			rec.narrator = arrStr[2] + " " +arrStr[3];
 			rec.time = Integer.parseInt(arrStr[4]);
 			records.add(rec);
-			
 		}
 		
 		return records;
+	}
+	//sadece kategori adýný döndürdüm ona sonra tekrar bakarýz belki numarayý da döndürelim mi diye
+	// sql tarafýndaki fonksiyonda havingde fname deðil ssn kontrol edicek þekilde deðiþiklik yaptým elimizde ssn olduðu için
+	public String favCategory(String user_ssn) throws SQLException {
+		CallableStatement cstmt = connection.prepareCall("{call favCategory(?,?,?)}");
+		cstmt.registerOutParameter(2, Types.INTEGER);
+		cstmt.registerOutParameter(3, Types.VARCHAR);
+		cstmt.setString(1,user_ssn);
+		cstmt.execute();
+		int num = cstmt.getInt(2);
+		String category = cstmt.getString(3);
+		return category;
+		
 	}
 
 }
