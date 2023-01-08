@@ -140,15 +140,18 @@ public class Database {
 		
 	}
 	
-<<<<<<< Updated upstream
 	public void increaseBalance(int amonut,String user_ssn) throws SQLException{
 		CallableStatement cstmt = connection.prepareCall("{call increaseBalance(?,?)}");
-		cstmt.setInt(2, amonut);
+		cstmt.setInt(1, amonut);
 		cstmt.setString(2,user_ssn);
 		cstmt.execute();
 	}
-=======
 	
->>>>>>> Stashed changes
+	public void createView(String user_ssn) throws SQLException{
+        CallableStatement cstmt = connection.prepareCall("{call createView(?)}");
+        cstmt.setString(1, user_ssn);
+        cstmt.execute();
+    }
+
 
 }

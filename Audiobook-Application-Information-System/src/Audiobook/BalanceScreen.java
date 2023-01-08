@@ -22,7 +22,7 @@ import java.awt.Color;
 
 public class BalanceScreen extends JFrame {
 	
-	public Database db;
+	Database db = new Database();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -45,7 +45,7 @@ public class BalanceScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BalanceScreen() {
+	public BalanceScreen() throws Exception{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 300);
 		contentPane = new JPanel();
@@ -114,12 +114,12 @@ public class BalanceScreen extends JFrame {
 				tmp = tmp2 + "";
 				lblCurrentBalance.setText(tmp);
 				
-				/*try {
-					 db.increaseBalance(tmp2,);     //  user_ssn döndürcez
+				try {
+					 db.increaseBalance(tmp2,"4000");     //  user_ssn döndürcez
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}*/
+				}
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
