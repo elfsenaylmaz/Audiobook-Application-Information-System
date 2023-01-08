@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class MainScreen extends JFrame {
 
@@ -19,21 +21,21 @@ public class MainScreen extends JFrame {
 	private JPanel contentPane;
 
 	public MainScreen() {
-		
-		setTitle("Storytel");
+		setTitle("BookNook");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/icons/audio-book (4).png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 1000, 600);
+		setBounds(400, 200, 800, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBackground(new Color(40, 40, 40));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_2 = new JButton("SIGN UP");
-		btnNewButton_2.setForeground(new Color(102, 51, 51));
-		btnNewButton_2.setBackground(new Color(255, 204, 153));
-		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnSignUp = new JButton("SIGN UP");
+		btnSignUp.setForeground(new Color(255, 255, 255));
+		btnSignUp.setBackground(new Color(236, 65, 0));
+		btnSignUp.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
+		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sign_upScreen sign_up;
 				try {
@@ -48,13 +50,13 @@ public class MainScreen extends JFrame {
 			}
 		});
 		
-		btnNewButton_2.setBounds(518, 229, 294, 98);
-		contentPane.add(btnNewButton_2);
+		btnSignUp.setBounds(305, 298, 175, 60);
+		contentPane.add(btnSignUp);
 		
-		JButton btnNewButton_2_1 = new JButton("SIGN IN");
-		btnNewButton_2_1.setForeground(new Color(102, 51, 51));
-		btnNewButton_2_1.setBackground(new Color(255, 204, 153));
-		btnNewButton_2_1.addActionListener(new ActionListener() {
+		JButton btnSignIn = new JButton("SIGN IN");
+		btnSignIn.setForeground(new Color(255, 255, 255));
+		btnSignIn.setBackground(new Color(236, 65, 0));
+		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sign_inScreen sign_in;
 				try {
@@ -68,21 +70,17 @@ public class MainScreen extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_2_1.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		btnNewButton_2_1.setBounds(172, 231, 294, 94);
-		contentPane.add(btnNewButton_2_1);
+		btnSignIn.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
+		btnSignIn.setBounds(305, 219, 175, 60);
+		contentPane.add(btnSignIn);
 		
-		JLabel lblNewLabel_2 = new JLabel("WELCOME TO STORYTEL");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setForeground(new Color(255, 153, 0));
-		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 35));
-		lblNewLabel_2.setBounds(172, 84, 640, 101);
-		contentPane.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBackground(Color.DARK_GRAY);
-		lblNewLabel_1.setBounds(0, 11, 974, 561);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblWelcome = new JLabel("   WELCOME TO BOOKNOOK");
+		lblWelcome.setIcon(new ImageIcon(MainScreen.class.getResource("/icons/audio-book (2).png")));
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome.setForeground(new Color(236, 65, 0));
+		lblWelcome.setFont(new Font("Tw Cen MT", Font.BOLD, 40));
+		lblWelcome.setBounds(70, 75, 640, 101);
+		contentPane.add(lblWelcome);
 	}
 
 }

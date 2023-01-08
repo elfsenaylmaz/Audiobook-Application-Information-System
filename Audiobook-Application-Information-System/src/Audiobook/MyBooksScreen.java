@@ -12,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
 public class MyBooksScreen extends JFrame {
@@ -25,6 +28,13 @@ public class MyBooksScreen extends JFrame {
 	public MyBooksScreen(String ssn) throws Exception{
 		ArrayList<Record> list = new ArrayList<Record>();
 		list = database.callView(ssn);
+		DefaultListModel<String> myBooks = new DefaultListModel<>();
+		for(Record r: list) {
+			String name = r.bookName;
+			String author = r.author;
+			
+			myBooks.addElement(name + "\t \t   " +author);
+		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
@@ -34,7 +44,8 @@ public class MyBooksScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList listBooks = new JList(list.toArray());
+		@SuppressWarnings("unchecked")
+		JList<String> listBooks = new JList<String>(myBooks);
 		listBooks.setBounds(25, 79, 935, 425);
 		contentPane.add(listBooks);
 		

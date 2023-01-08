@@ -9,95 +9,94 @@ import javax.swing.border.EmptyBorder;
 
 public class Sign_inScreen extends JFrame {
 
-	/**
-	 * 
-	 */
 	Database database = new Database();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtEnterUsernameHere;
-	private JTextField textField_1;
+	private JTextField textFieldPassword;
 	public String ssn;
 
 	public Sign_inScreen() throws Exception{
-		setTitle("Storytel");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Sign_inScreen.class.getResource("/icons/audio-book (4).png")));
+		setTitle("BookNook");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 200, 1000, 600);
+		setBounds(400, 200, 800, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBackground(new Color(40, 40, 40));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_2 = new JButton("BACK");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnGoBack = new JButton("");
+		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainScreen main;
+				MainScreen mainScreen;
 				try {
-					main = new MainScreen();
-					main.setVisible(true);
+					mainScreen = new MainScreen();
+					mainScreen.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 				dispose();
 			}
 		});
-	
+		btnGoBack.setIcon(new ImageIcon(Sign_inScreen.class.getResource("/icons/arrow.png")));
+		btnGoBack.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		btnGoBack.setBounds(10, 10, 44, 30);
+		contentPane.add(btnGoBack);
 		
-		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		btnNewButton_2.setBackground(new Color(255, 204, 153));
-		btnNewButton_2.setBounds(10, 10, 97, 32);
-		contentPane.add(btnNewButton_2);
-		
-		
-		JLabel lblClentLognScreen = new JLabel("USER LOGIN");
-		lblClentLognScreen.setForeground(new Color(255, 153, 0));
+		JLabel lblClentLognScreen = new JLabel("  USER LOGIN");
+		lblClentLognScreen.setIcon(new ImageIcon(Sign_inScreen.class.getResource("/icons/audio-book (3).png")));
+		lblClentLognScreen.setForeground(new Color(236, 65, 0));
 		lblClentLognScreen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblClentLognScreen.setFont(new Font("Tw Cen MT", Font.BOLD, 30));
-		lblClentLognScreen.setBounds(255, 89, 474, 105);
+		lblClentLognScreen.setFont(new Font("Tw Cen MT", Font.BOLD, 35));
+		lblClentLognScreen.setBounds(146, 82, 474, 69);
 		contentPane.add(lblClentLognScreen);
 		
-		JLabel lblNewLabel = new JLabel("USERNAME:");
-		lblNewLabel.setForeground(new Color(255, 153, 0));
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(255, 203, 230, 49);
-		contentPane.add(lblNewLabel);
+		JLabel lblUsername = new JLabel("USERNAME:");
+		lblUsername.setForeground(new Color(236, 65, 0));
+		lblUsername.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername.setBounds(171, 171, 196, 37);
+		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("PASSWORD:");
-		lblPassword.setForeground(new Color(255, 153, 0));
+		lblPassword.setForeground(new Color(236, 65, 0));
 		lblPassword.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(255, 264, 230, 49);
+		lblPassword.setBounds(171, 229, 196, 37);
 		contentPane.add(lblPassword);
 		
 		txtEnterUsernameHere = new JTextField();
 		txtEnterUsernameHere.setForeground(new Color(0, 0, 0));
-		txtEnterUsernameHere.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtEnterUsernameHere.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
 		txtEnterUsernameHere.setToolTipText("");
-		txtEnterUsernameHere.setBounds(499, 205, 230, 49);
+		txtEnterUsernameHere.setBounds(345, 171, 230, 37);
 		contentPane.add(txtEnterUsernameHere);
 		txtEnterUsernameHere.setColumns(10);
 		
-		textField_1 = new JPasswordField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField_1.setColumns(10);
-		textField_1.setBounds(499, 265, 230, 49);
-		contentPane.add(textField_1);
+		textFieldPassword = new JPasswordField();
+		textFieldPassword.setFont(new Font("Tw Cen MT", Font.PLAIN, 14));
+		textFieldPassword.setColumns(10);
+		textFieldPassword.setBounds(345, 230, 230, 37);
+		contentPane.add(textFieldPassword);
 		
-		JButton btnNewButton = new JButton("LOGIN");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setIcon(new ImageIcon(Sign_inScreen.class.getResource("/icons/login.png")));
+		btnLogin.setForeground(new Color(255, 255, 255));
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuScreen menu;
 				try {
-					ssn = database.userLogin(txtEnterUsernameHere.getText(),textField_1.getText());
+					ssn = database.userLogin(txtEnterUsernameHere.getText(),textFieldPassword.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				if(ssn == null) {
 					JOptionPane.showMessageDialog(null,"Login failed!");
-					textField_1.setText("");
+					textFieldPassword.setText("");
 				}else {
 					try {
 						menu = new MenuScreen(ssn);
@@ -111,15 +110,10 @@ public class Sign_inScreen extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBackground(new Color(255, 204, 153));
+		btnLogin.setBackground(new Color(236, 65, 0));
 		
-		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		btnNewButton.setBounds(405, 368, 173, 67);
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(0, 0, 1009, 550);
-		contentPane.add(lblNewLabel_1);
+		btnLogin.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
+		btnLogin.setBounds(298, 292, 175, 60);
+		contentPane.add(btnLogin);
 	}
-
 }

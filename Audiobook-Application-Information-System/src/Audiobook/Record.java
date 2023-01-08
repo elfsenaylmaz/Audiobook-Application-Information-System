@@ -6,4 +6,5 @@ public class Record {
 	public String narrator;
 	public int time;
 	public String category;
+	public int dailyPrice;
 }
