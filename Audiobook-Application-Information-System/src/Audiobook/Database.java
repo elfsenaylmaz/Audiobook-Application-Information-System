@@ -137,7 +137,7 @@ public class Database {
 		cstmt.setString(2,user_ssn);
 		cstmt.execute();
 	}
-<<<<<<< Updated upstream
+
 	
 	public void createView(String user_ssn) throws SQLException{
         CallableStatement cstmt = connection.prepareCall("{call createView(?)}");
@@ -145,7 +145,5 @@ public class Database {
         cstmt.execute();
     }
 
-=======
->>>>>>> Stashed changes
 
 }

@@ -113,7 +113,7 @@ public class Sign_upScreen extends JFrame {
 		getContentPane().add(hata_email);
 		hata_email.setVisible(false);
 		
-		@SuppressWarnings("rawtypes")
+		
 		JComboBox comboBox = new JComboBox();
 		Object[] days = {"day",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
 		Object[] months = {"month",1,2,3,4,5,6,7,8,9,10,11,12};
@@ -165,15 +165,15 @@ public class Sign_upScreen extends JFrame {
 						hata = 1;
 					}
 					
-					System.out.println(comboBox_2.getSelectedIndex() +""+  comboBox_1.getSelectedIndex() +""+  comboBox.getSelectedIndex());
-					if(comboBox_2.getSelectedIndex() == 0 ||  comboBox_1.getSelectedIndex() == 0 ||   comboBox.getSelectedIndex() == 0) {
+					if(comboBox_2.getSelectedIndex() == 0 ||  comboBox_1.getSelectedIndex() == 0 ||   comboBox.getSelectedIndex() == 20) {
 						hata =1;
 					}
 					
 				   if(hata == 0){
-						String date = comboBox_2.getSelectedIndex() + "-" + comboBox_1.getSelectedIndex() + "-" + comboBox.getSelectedIndex();
-						 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-						 java.util.Date date1 = sdf.parse(date);
+						String date = 2021 - comboBox_2.getSelectedIndex() + "-" + comboBox_1.getSelectedIndex() + "-" + comboBox.getSelectedIndex();
+						
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+						java.util.Date date1 = sdf.parse(date);
 						 
 						java.sql.Date sqlDate = new Date(date1.getTime()); 
 						boolean flag = database.userRegister(name.getText(), surname.getText(),username.getText() , email.getText() , password.getText(),sqlDate);

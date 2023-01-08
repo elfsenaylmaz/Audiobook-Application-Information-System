@@ -17,8 +17,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//MainScreen main  = new MainScreen();
-					Sign_upScreen main = new Sign_upScreen();
+					MainScreen main  = new MainScreen();
 					main.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
