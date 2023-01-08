@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class MyBooksScreen extends JFrame {
 
@@ -27,6 +28,8 @@ public class MyBooksScreen extends JFrame {
 	public String ssn;
 	
 	public MyBooksScreen(String ssn) throws Exception{
+		setTitle("BookNook");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MyBooksScreen.class.getResource("/icons/audio-book (4).png")));
 		Control control = new Control();
 		ArrayList<Record> books = new ArrayList<Record>();
 		books = database.callView(ssn);
