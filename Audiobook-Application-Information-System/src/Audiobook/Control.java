@@ -29,6 +29,30 @@ public class Control{
             return false;
     }
     
+     public String stringFormat(String bookName, String author, String narratorName, String category, int time) {
+    	 Integer i;
+    	 for(i=bookName.length();i<40;i++) {
+    		 bookName += " ";
+    	 }
+    	 
+    	 bookName += author;
+    	 for(i=author.length();i<30;i++) {
+    		 bookName += " ";
+    	 }
+    	 bookName += narratorName;
+    	 for(i=narratorName.length();i<20;i++) {
+    		 bookName += " ";
+    	 }
+    	 bookName += category;
+    	 
+    	 for(i=category.length();i<20;i++) {
+    		 bookName += " ";
+    	 }
+    	 
+    	 bookName += ""+time+"";
+    	 return bookName;
+    	 
+     }
     
 
 

@@ -129,6 +129,8 @@ public class Database {
 			rec.author = arrStr[1].substring(1, arrStr[1].length()-1);
 			rec.narrator = arrStr[2] + " " +arrStr[3];
 			rec.time = Integer.parseInt(arrStr[4]);
+			rec.category = arrStr[5];
+			
 			records.add(rec);
 		}
 		
@@ -175,6 +177,38 @@ public class Database {
 		}
 		
 		return myLibrary;
+	}
+	
+	public ArrayList<Record> filterBooks(String category, int hour) throws Exception{
+		System.out.println(category+hour);
+		CallableStatement cstmt = connection.prepareCall("{? = call filterBooks(?,?)}");
+		cstmt.registerOutParameter(1,2003);
+		cstmt.setString(2,category);
+		cstmt.setInt(3,hour);
+		cstmt.execute();
+		
+		java.sql.Array type = (java.sql.Array) cstmt.getObject(1);
+		if(type == null) {
+			return null;
+		}
+		
+		ResultSet rs = type.getResultSet();
+		ArrayList<Record> books = new ArrayList<Record>();
+
+		while(rs.next()) {
+			Record rec = new Record();
+			String line = rs.getString(2);
+			String line2 = line.substring(1, line.length()-1);
+			String[] arrStr = line2.split(",");
+			rec.bookName = arrStr[0];
+			rec.author = arrStr[1].substring(1, arrStr[1].length()-1);
+			rec.narrator = arrStr[2] + " " +arrStr[3];
+			rec.time = Integer.parseInt(arrStr[4]);
+			rec.category = arrStr[5];
+			books.add(rec);
+		}
+		
+		return books;
 	}
 
 

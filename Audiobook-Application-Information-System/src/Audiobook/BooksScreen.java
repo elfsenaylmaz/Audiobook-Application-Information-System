@@ -9,6 +9,8 @@ import java.awt.ScrollPane;
 import java.awt.Scrollbar;
 import javax.swing.JComboBox;
 import java.awt.Font;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -25,10 +27,10 @@ public class BooksScreen extends JFrame {
 	private JPanel contentPane;
 	private JTextField searchField;
 	public String ssn;
-
+	ArrayList<String> list = new ArrayList<String>();
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public BooksScreen(String ssn) throws Exception{
-		ArrayList<String> list = new ArrayList<String>();
+		
 		list = database.listCategories();
 		list.add(0, "All");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +52,44 @@ public class BooksScreen extends JFrame {
 		timeComboBox.setBounds(232, 25, 200, 30);
 		contentPane.add(timeComboBox);
 		
+		JList listBooks = new JList();
+		listBooks.setBounds(25, 84, 937, 424);
+		contentPane.add(listBooks);
+		listBooks.setFont(new Font("consolas", Font.BOLD, 15));
+		
 		JButton btnFilter = new JButton("FILTER");
+		btnFilter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Record> books = new ArrayList<Record>();
+				Control control = new Control();
+				try {
+					books = database.filterBooks(list.get(categoryComboBox.getSelectedIndex()), timeComboBox.getSelectedIndex());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if(books == null) {
+					JOptionPane.showMessageDialog(null,"There are no books with the features you are looking for!");
+				}else {
+					DefaultListModel<String> filterBooks = new DefaultListModel<String>();
+					for(Record r : books) {
+						String name = r.bookName;
+						String author = r.author;
+						String narrator = r.narrator;
+						String category = r.category;
+						int time = r.time;;
+						String line  =   control.stringFormat(name, author, narrator, category, time);
+						System.out.println(line);
+						filterBooks.addElement(line);
+					}
+					listBooks.setModel(filterBooks);
+				}
+
+			}
+		});
+		
+		
+
 		btnFilter.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		btnFilter.setBounds(442, 24, 96, 30);
 		contentPane.add(btnFilter);
@@ -60,12 +99,14 @@ public class BooksScreen extends JFrame {
 		searchField.setBounds(724, 25, 200, 30);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
-	
 		
-		JButton btnSearch = new JButton("New button");
+
+		
+		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Record> books = new ArrayList<Record>();
+				Control control = new Control();
 				String bookName = searchField.getText();
 				if(bookName.compareTo("") == 0) {
 					JOptionPane.showMessageDialog(null,"You must first enter a book name!");
@@ -87,9 +128,7 @@ public class BooksScreen extends JFrame {
 		btnSearch.setBounds(931, 24, 31, 30);
 		contentPane.add(btnSearch);
 		
-		JList listBooks = new JList();
-		listBooks.setBounds(25, 84, 937, 424);
-		contentPane.add(listBooks);
+
 		
 		JButton btnNewButton = new JButton("GO BACK");
 		btnNewButton.addActionListener(new ActionListener() {
