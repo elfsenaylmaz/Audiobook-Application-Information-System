@@ -13,10 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class BooksScreen extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	public Database db = new Database();
 	private JPanel contentPane;
 	private JTextField searchField;
 
@@ -36,10 +39,10 @@ public class BooksScreen extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public BooksScreen() {
+	public BooksScreen() throws Exception {
+		ArrayList<String> list = new ArrayList<String>();
+		list = db.listCategories();
+		list.add(0, "All");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -48,7 +51,7 @@ public class BooksScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox categoryComboBox = new JComboBox(new String[] {"Biyografi"});
+		JComboBox<String> categoryComboBox = new JComboBox(list.toArray(new String[list.size()]));
 		categoryComboBox.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		categoryComboBox.setBounds(25, 25, 200, 30);
 		contentPane.add(categoryComboBox);
