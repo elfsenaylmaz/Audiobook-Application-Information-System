@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -101,8 +103,8 @@ public class BooksScreen extends JFrame {
 		searchField.setColumns(10);
 		
 
-		
-		JButton btnSearch = new JButton("Search");
+		JButton btnSearch = new JButton();
+		btnSearch.setIcon(new ImageIcon(BooksScreen.class.getResource("/icons/Search.png")));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Record> books = new ArrayList<Record>();

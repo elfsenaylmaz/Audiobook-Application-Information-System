@@ -210,6 +210,32 @@ public class Database {
 		
 		return books;
 	}
-
+	
+	
+	public int getBalance(String ssn) throws Exception{
+		String query = "select balance from users where ssn = ?";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, ssn);
+		ResultSet result = pstmt.executeQuery();
+		
+		while(result.next()) {
+			return result.getInt(1);
+		}
+		return 0;
+	}
+	
+	public String getName(String ssn) throws Exception{
+		String query = "select fname,lname from users where ssn = ?";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, ssn);
+		ResultSet result = pstmt.executeQuery();
+		
+		while(result.next()) {
+			return result.getString(1) + " " + result.getString(2);
+		}
+		return null;
+	}
+	
+	
 
 }
