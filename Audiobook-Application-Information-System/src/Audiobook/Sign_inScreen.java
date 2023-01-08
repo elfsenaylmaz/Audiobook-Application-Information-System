@@ -99,7 +99,7 @@ public class Sign_inScreen extends JFrame {
 					JOptionPane.showMessageDialog(null,"Login failed!");
 				}else {
 					try {
-						menu = new MenuScreen();
+						menu = new MenuScreen(ssn);
 						setVisible(false);
 						menu.setVisible(true);
 					} catch (Exception e1) {

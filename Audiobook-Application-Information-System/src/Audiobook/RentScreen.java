@@ -18,27 +18,9 @@ public class RentScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RentScreen frame = new RentScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public RentScreen() {
+	public String ssn;
+	
+	public RentScreen(String ssn) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -106,7 +88,7 @@ public class RentScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BooksScreen bookScreen;
 				try {
-					bookScreen = new BooksScreen();
+					bookScreen = new BooksScreen(ssn);
 					bookScreen.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

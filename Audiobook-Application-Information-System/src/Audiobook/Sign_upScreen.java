@@ -10,6 +10,15 @@ import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 public class Sign_upScreen extends JFrame {
+	private String ssn;
+	
+	public String getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
 
 	Database database = new Database();
 	private static final long serialVersionUID = 1L;
@@ -176,11 +185,11 @@ public class Sign_upScreen extends JFrame {
 						java.util.Date date1 = sdf.parse(date);
 						 
 						java.sql.Date sqlDate = new Date(date1.getTime()); 
-						boolean flag = database.userRegister(name.getText(), surname.getText(),username.getText() , email.getText() , password.getText(),sqlDate);
-						if(flag) {
+						ssn = database.userRegister(name.getText(), surname.getText(),username.getText() , email.getText() , password.getText(),sqlDate);
+						if(ssn != null) {
 							JOptionPane.showMessageDialog(null,"Registration successful, log in");
 							try {
-								menu = new MenuScreen();
+								menu = new MenuScreen(ssn);
 								setVisible(false);
 								menu.setVisible(true);
 							} catch (Exception e1) {

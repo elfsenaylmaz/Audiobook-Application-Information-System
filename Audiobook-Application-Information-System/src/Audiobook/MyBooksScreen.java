@@ -18,27 +18,9 @@ public class MyBooksScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MyBooksScreen frame = new MyBooksScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public MyBooksScreen() {
+	public String ssn;
+	
+	public MyBooksScreen(String ssn) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -62,7 +44,7 @@ public class MyBooksScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				MenuScreen menuScreen;
 				try {
-					menuScreen = new MenuScreen();
+					menuScreen = new MenuScreen(ssn);
 					menuScreen.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

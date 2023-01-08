@@ -11,6 +11,20 @@ public class Database {
     	connection = SQLconnection.getConnection();
     }
 	
+	
+	
+	public String searchUser(String userName) throws Exception{
+		String query = "SELECT ssn FROM users WHERE nickname = ?";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, userName);
+		ResultSet result = pstmt.executeQuery();
+		
+		if(result.next()) 
+			return result.getString(1);
+		else
+			return null;
+	}
+	
 	public String userLogin(String userName, String password) throws Exception{
 		String ssn, psswd;
 		String query = "SELECT ssn, psswd FROM users WHERE nickname = ?";
@@ -31,13 +45,10 @@ public class Database {
 		
 	}
 	
-	public boolean userRegister(String fname,String lname,String userName,String mail,String psswd, java.sql.Date date1) throws Exception {
-		String query = "SELECT ssn, psswd FROM users WHERE nickname = ?";
-		PreparedStatement pstmt = connection.prepareStatement(query);
-		pstmt.setString(1, userName);
-		ResultSet result = pstmt.executeQuery();
+	public String userRegister(String fname,String lname,String userName,String mail,String psswd, java.sql.Date date1) throws Exception {
 		
-		if(!result.next()) {
+		
+		if(searchUser(userName) == null) {
 			String query2 = "INSERT INTO users (ssn, fname, lname, nickname, mail, psswd, bdate) VALUES (nextval('userseq'), ?, ? ,? ,?, ?, ?)";
 			PreparedStatement stmt = connection.prepareStatement(query2);
 		    
@@ -48,9 +59,10 @@ public class Database {
 			stmt.setString(5,psswd);
 			stmt.setDate(6, date1);
 			stmt.executeUpdate();
-			return true;
+			
+			return searchUser(userName);
 		}else {
-			return false;
+			return null;
 		}
 		
 	}
@@ -100,9 +112,15 @@ public class Database {
 		cstmt.registerOutParameter(1,2003);
 		cstmt.setString(2, bookName);
 		cstmt.execute();
+
 		java.sql.Array type = (java.sql.Array) cstmt.getObject(1);
+		if(type == null) {
+			return null;
+		}
+		
 		ResultSet rs = type.getResultSet();
 		ArrayList<Record> records = new ArrayList<Record>();
+
 		while(rs.next()) {
 			Record rec = new Record();
 			String line = rs.getString(2);
@@ -117,6 +135,7 @@ public class Database {
 		
 		return records;
 	}
+	
 	//sadece kategori adýný döndürdüm ona sonra tekrar bakarýz belki numarayý da döndürelim mi diye
 	// sql tarafýndaki fonksiyonda havingde fname deðil ssn kontrol edicek þekilde deðiþiklik yaptým elimizde ssn olduðu için
 	public String favCategory(String user_ssn) throws SQLException {

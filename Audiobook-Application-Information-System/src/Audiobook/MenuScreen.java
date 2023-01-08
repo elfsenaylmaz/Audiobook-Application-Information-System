@@ -1,6 +1,6 @@
 package Audiobook;
 
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,29 +12,11 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 
 public class MenuScreen extends JFrame {
-
+	public String ssn;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuScreen frame = new MenuScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public MenuScreen() {
+	public MenuScreen(String ssn) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -49,7 +31,7 @@ public class MenuScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BooksScreen booksScreen;
 				try {
-					booksScreen = new BooksScreen();
+					booksScreen = new BooksScreen(ssn);
 					setVisible(false);
 					booksScreen.setVisible(true);
 				} catch (Exception e1) {
@@ -68,7 +50,7 @@ public class MenuScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BalanceScreen balanceScreen;
 				try {
-					balanceScreen = new BalanceScreen();
+					balanceScreen = new BalanceScreen(ssn);
 					setVisible(false);
 					balanceScreen.setVisible(true);
 				} catch (Exception e1) {
@@ -86,7 +68,7 @@ public class MenuScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BooksScreen myBooksScreen;
 				try {
-					myBooksScreen = new BooksScreen();
+					myBooksScreen = new BooksScreen(ssn);
 					setVisible(false);
 					myBooksScreen.setVisible(true);
 				} catch (Exception e1) {

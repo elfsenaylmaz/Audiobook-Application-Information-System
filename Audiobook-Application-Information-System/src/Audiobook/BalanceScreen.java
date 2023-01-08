@@ -25,27 +25,10 @@ public class BalanceScreen extends JFrame {
 	Database db = new Database();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public String ssn;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BalanceScreen frame = new BalanceScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public BalanceScreen() throws Exception{
+	public BalanceScreen(String ssn) throws Exception{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 300);
 		contentPane = new JPanel();
@@ -131,7 +114,7 @@ public class BalanceScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				MenuScreen menuScreen;
 				try {
-					menuScreen = new MenuScreen();
+					menuScreen = new MenuScreen(ssn);
 					menuScreen.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
