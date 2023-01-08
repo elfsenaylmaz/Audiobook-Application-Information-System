@@ -97,6 +97,7 @@ public class Sign_inScreen extends JFrame {
 				}
 				if(ssn == null) {
 					JOptionPane.showMessageDialog(null,"Login failed!");
+					textField_1.setText("");
 				}else {
 					try {
 						menu = new MenuScreen(ssn);
