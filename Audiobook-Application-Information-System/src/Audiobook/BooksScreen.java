@@ -115,6 +115,19 @@ public class BooksScreen extends JFrame {
 						books = database.searchBook(bookName);
 						if(books == null) {
 							JOptionPane.showMessageDialog(null,"No results were found matching your search!");
+						}else {
+							DefaultListModel<String> filterBooks = new DefaultListModel<String>();
+							for(Record r : books) {
+								String name = r.bookName;
+								String author = r.author;
+								String narrator = r.narrator;
+								String category = r.category;
+								int time = r.time;
+								String line  =   control.stringFormat(name, author, narrator, category, time);
+								System.out.println(line);
+								filterBooks.addElement(line);
+							}
+							listBooks.setModel(filterBooks);
 						}
 						
 					} catch (Exception e1) {
