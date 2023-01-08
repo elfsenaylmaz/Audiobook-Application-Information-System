@@ -4,24 +4,25 @@ package Audiobook;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 
 public class Sign_upScreen extends JFrame {
 
-
+	Database database = new Database();
 	private static final long serialVersionUID = 1L;
 	private JTextField email;
 	private JTextField name;
-	private JTextField phone;
 	private JTextField password;
 	private JTextField surname;
+	private JTextField username;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Sign_upScreen() {
+	public Sign_upScreen() throws Exception{
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setTitle("Storytel");
-		User user = new User();
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,32 +61,24 @@ public class Sign_upScreen extends JFrame {
 		lblNewLabel_1_3.setBounds(37, 316, 152, 25);
 		getContentPane().add(lblNewLabel_1_3);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("PHONE NUMBER:");
-		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_4.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		lblNewLabel_1_4.setBounds(37, 273, 152, 32);
-		getContentPane().add(lblNewLabel_1_4);
-		
 		JLabel lblNewLabel_1_6 = new JLabel("PASSWORD:");
 		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_6.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		lblNewLabel_1_6.setBounds(37, 353, 152, 25);
+		lblNewLabel_1_6.setBounds(37, 391, 152, 25);
 		getContentPane().add(lblNewLabel_1_6);
-		
-		JLabel hata_phone = new JLabel("phone number is incorrect");
-		hata_phone.setForeground(new Color(139, 0, 0));
-		hata_phone.setHorizontalAlignment(SwingConstants.LEFT);
-		hata_phone.setBounds(409, 280, 169, 21);
-		getContentPane().add(hata_phone);
-		hata_phone.setVisible(false);
-		
-		JLabel hata_email = new JLabel("e-mail is incorrect");
-		hata_email.setForeground(new Color(139, 0, 0));
-		hata_email.setHorizontalAlignment(SwingConstants.LEFT);
-		hata_email.setBounds(409, 319, 200, 21);
-		getContentPane().add(hata_email);
-		hata_email.setVisible(false);
 
+		
+		username = new JTextField();
+		username.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		username.setColumns(10);
+		username.setBounds(189, 352, 210, 25);
+		getContentPane().add(username);
+		
+		JLabel lblNewLabel_1_3_1 = new JLabel("USERNAME:");
+		lblNewLabel_1_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_3_1.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+		lblNewLabel_1_3_1.setBounds(37, 352, 152, 25);
+		getContentPane().add(lblNewLabel_1_3_1);
 		
 		
 		email = new JTextField();
@@ -107,121 +100,109 @@ public class Sign_upScreen extends JFrame {
 		surname.setBounds(189, 183, 210, 25);
 		getContentPane().add(surname);
 		
-		
-		phone = new JTextField();
-		phone.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		phone.setColumns(10);
-		phone.setBounds(189, 281, 210, 25);
-		getContentPane().add(phone);
-		
 		password = new JPasswordField();
 		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setColumns(10);
-		password.setBounds(189, 352, 210, 25);
+		password.setBounds(189, 390, 210, 25);
 		getContentPane().add(password);
 		
+		JLabel hata_email = new JLabel("e-mail is incorrect");
+		hata_email.setForeground(new Color(139, 0, 0));
+		hata_email.setHorizontalAlignment(SwingConstants.LEFT);
+		hata_email.setBounds(409, 319, 200, 21);
+		getContentPane().add(hata_email);
+		hata_email.setVisible(false);
 		
-		JLabel lblNewLabel_1_2_1 = new JLabel("GENDER:");
-		lblNewLabel_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_2_1.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		lblNewLabel_1_2_1.setBounds(37, 216, 152, 25);
-		getContentPane().add(lblNewLabel_1_2_1);
+		@SuppressWarnings("rawtypes")
+		JComboBox comboBox = new JComboBox();
+		Object[] days = {"day",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+		Object[] months = {"month",1,2,3,4,5,6,7,8,9,10,11,12};
+		Object[] years = {"year",2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,
+				2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973,1972,1971,1970};
+		comboBox.setModel(new DefaultComboBoxModel(days));
+		comboBox.setBounds(189, 244, 70, 32);
+		getContentPane().add(comboBox);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("FEMALE");
-		rdbtnNewRadioButton.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
-		rdbtnNewRadioButton.setBackground(new Color(255, 204, 153));
-		rdbtnNewRadioButton.setBounds(189, 214, 78, 28);
-		getContentPane().add(rdbtnNewRadioButton);
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(256, 244, 78, 32);
+		comboBox_1.setModel(new DefaultComboBoxModel(months));
+		getContentPane().add(comboBox_1);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("MALE");
-		rdbtnNewRadioButton_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
-		rdbtnNewRadioButton_1.setBackground(new Color(255, 204, 153));
-		rdbtnNewRadioButton_1.setBounds(263, 214, 65, 28);
-		getContentPane().add(rdbtnNewRadioButton_1);
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(332, 244, 78, 32);
+		comboBox_2.setModel(new DefaultComboBoxModel(years));
+		getContentPane().add(comboBox_2);
 		
-
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("OTHER");
-		rdbtnNewRadioButton_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
-		rdbtnNewRadioButton_2.setBackground(new Color(255, 204, 153));
-		rdbtnNewRadioButton_2.setBounds(327, 214, 72, 28);
-		getContentPane().add(rdbtnNewRadioButton_2);
-		rdbtnNewRadioButton.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbtnNewRadioButton_1.setSelected(false);
-				rdbtnNewRadioButton_2.setSelected(false);
-		}
-		});
-		
-		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbtnNewRadioButton_2.setSelected(false);
-				rdbtnNewRadioButton.setSelected(false);
-		}
-		});
-		
-		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					rdbtnNewRadioButton_1.setSelected(false);
-					rdbtnNewRadioButton.setSelected(false);
-			}
-		});
-		
-		
+		Control control = new Control();
 		JButton btnNewButton = new JButton("REGISTER");
 		btnNewButton.setBackground(Color.ORANGE);
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int hata = 0;
-				
-				if(user.isStringEmpty(phone.getText())) {
-					hata = 2;
-				}else if(!user.isPhoneValid(phone.getText())) {
-					hata_phone.setVisible(true);	
-					phone.setText("");	
-					hata = 1;
+			
+			public void actionPerformed(ActionEvent e){
+				try {
+					MenuScreen menu;
+					
+					int hata = 0;
+					
+					if(control.isStringEmpty(name.getText())) {
+						hata = 1;
+					}
+					
+					if(control.isStringEmpty(surname.getText())) {
+						hata = 	1;
+					}
+					
+					if(control.isStringEmpty(email.getText())) {
+						hata = 1;
+					}else if(!control.isEMailValid(email.getText())) {
+						hata_email.setVisible(true);	
+						email.setText("");
+						hata = 2;
+					}
+					
+					if(control.isStringEmpty(password.getText())) {
+						hata = 1;
+					}
+					
+					System.out.println(comboBox_2.getSelectedIndex() +""+  comboBox_1.getSelectedIndex() +""+  comboBox.getSelectedIndex());
+					if(comboBox_2.getSelectedIndex() == 0 ||  comboBox_1.getSelectedIndex() == 0 ||   comboBox.getSelectedIndex() == 0) {
+						hata =1;
+					}
+					
+				   if(hata == 0){
+						String date = comboBox_2.getSelectedIndex() + "-" + comboBox_1.getSelectedIndex() + "-" + comboBox.getSelectedIndex();
+						 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+						 java.util.Date date1 = sdf.parse(date);
+						 
+						java.sql.Date sqlDate = new Date(date1.getTime()); 
+						boolean flag = database.userRegister(name.getText(), surname.getText(),username.getText() , email.getText() , password.getText(),sqlDate);
+						if(flag) {
+							JOptionPane.showMessageDialog(null,"Registration successful, log in");
+							try {
+								menu = new MenuScreen();
+								setVisible(false);
+								menu.setVisible(true);
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+							dispose();
+							
+						}else
+							JOptionPane.showMessageDialog(null,"A user with this username already exists");
+						    username.setText("");
+					}else if(hata == 1){
+						JOptionPane.showMessageDialog(null,"Please fill all the fields!!!");
+					}
+				}catch(Exception e1) {
+					e1.printStackTrace();
 				}
 				
-				if(user.isStringEmpty(email.getText())) {
-					hata = 	2;
-				}else if(!user.isEMailValid(email.getText())) {
-					hata_email.setVisible(true);	
-					email.setText("");
-					hata = 1;
-				}
-				
-				
-				if(user.isStringEmpty((email.getText()))) {
-					hata = 2;
-				}
-				
-				if(user.isStringEmpty((name.getText()))) {
-					hata = 2;
-				}
-				
-				if(user.isStringEmpty((password.getText()))) {
-					hata = 2;
-				}
-				
-				
-				int gender = -1;
-				if(rdbtnNewRadioButton.isSelected()) 
-					gender = 0 ;
-				else if(rdbtnNewRadioButton_1.isSelected())
-					gender = 1;
-				else if(rdbtnNewRadioButton_2.isSelected())
-					gender = 2;
-				if(hata == 2) {
-					JOptionPane.showMessageDialog(null,"Please fill all the fields!!!");
-				}else if(hata == 0){
-					User user = new User();
-	
-				}
+					
 			}
 		});
 		
-		btnNewButton.setBounds(196, 410, 141, 62);
+		btnNewButton.setBounds(189, 454, 141, 62);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("BACK");
@@ -244,32 +225,13 @@ public class Sign_upScreen extends JFrame {
 		btnNewButton_2.setBounds(10, 10, 97, 32);
 		getContentPane().add(btnNewButton_2);
 		
-		JLabel lblNewLabel_2 = new JLabel("0(5XX) XXX XX XX");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(57, 297, 152, 13);
-		getContentPane().add(lblNewLabel_2);
-		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(10, 11, 984, 561);
 		getContentPane().add(lblNewLabel);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		Object[] days = {"day",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
-		Object[] months = {"month",1,2,3,4,5,6,7,8,9,10,11,12};
-		Object[] years = {"year",1,2,3,4,5,6,7,8,9,10,11,12};
-		comboBox.setModel(new DefaultComboBoxModel(days));
-		comboBox.setBounds(189, 244, 78, 32);
-		getContentPane().add(comboBox);
+
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(252, 244, 78, 32);
-		comboBox_1.setModel(new DefaultComboBoxModel(months));
-		getContentPane().add(comboBox_1);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(321, 244, 78, 32);
-		comboBox_2.setModel(new DefaultComboBoxModel(years));
-		getContentPane().add(comboBox_2);
+
 	}
 }

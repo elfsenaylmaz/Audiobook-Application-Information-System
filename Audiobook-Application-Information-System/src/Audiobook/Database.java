@@ -1,13 +1,8 @@
 package Audiobook;
 
 import java.sql.*;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;
 public class Database {
 
     public Connection connection;
@@ -36,7 +31,7 @@ public class Database {
 		
 	}
 	
-	public boolean userRegister(String fname,String lname,String userName,String mail,String psswd, int day, int month, int year) throws Exception {
+	public boolean userRegister(String fname,String lname,String userName,String mail,String psswd, java.sql.Date date1) throws Exception {
 		String query = "SELECT ssn, psswd FROM users WHERE nickname = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.setString(1, userName);
@@ -45,20 +40,16 @@ public class Database {
 		if(!result.next()) {
 			String query2 = "INSERT INTO users (ssn, fname, lname, nickname, mail, psswd, bdate) VALUES (nextval('userseq'), ?, ? ,? ,?, ?, ?)";
 			PreparedStatement stmt = connection.prepareStatement(query2);
-			
-			String date = year + "-" + month + "-" + day;
-			java.sql.Date bdate = java.sql.Date.valueOf(date);
 		    
 			stmt.setString(1,fname);
 			stmt.setString(2,lname);
 			stmt.setString(3,userName);
 			stmt.setString(4,mail);
 			stmt.setString(5,psswd);
-			stmt.setDate(6,bdate);
+			stmt.setDate(6, date1);
 			stmt.executeUpdate();
 			return true;
 		}else {
-			System.out.println("A user with this username already exists");
 			return false;
 		}
 		
@@ -146,6 +137,7 @@ public class Database {
 		cstmt.setString(2,user_ssn);
 		cstmt.execute();
 	}
+<<<<<<< Updated upstream
 	
 	public void createView(String user_ssn) throws SQLException{
         CallableStatement cstmt = connection.prepareCall("{call createView(?)}");
@@ -153,5 +145,7 @@ public class Database {
         cstmt.execute();
     }
 
+=======
+>>>>>>> Stashed changes
 
 }
