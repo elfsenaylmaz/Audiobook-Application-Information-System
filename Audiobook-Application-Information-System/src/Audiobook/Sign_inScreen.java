@@ -12,13 +12,14 @@ public class Sign_inScreen extends JFrame {
 	/**
 	 * 
 	 */
+	Database database = new Database();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtEnterUsernameHere;
 	private JTextField textField_1;
+	public String ssn;
 
-
-	public Sign_inScreen() {
+	public Sign_inScreen() throws Exception{
 		setTitle("Storytel");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
@@ -88,6 +89,24 @@ public class Sign_inScreen extends JFrame {
 		JButton btnNewButton = new JButton("LOGIN");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MenuScreen menu;
+				try {
+					ssn = database.userLogin(txtEnterUsernameHere.getText(),textField_1.getText());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				if(ssn == null) {
+					JOptionPane.showMessageDialog(null,"Login failed!");
+				}else {
+					try {
+						menu = new MenuScreen();
+						setVisible(false);
+						menu.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					dispose();
+				}
 				
 			}
 		});
