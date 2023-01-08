@@ -171,8 +171,11 @@ public class Database {
 			Record rec = new Record();
 			rec.bookName =  result.getString(1);
 			rec.author =  result.getString(2);
-			rec.category =  result.getString(3);
-			rec.time =  result.getInt(4);
+			String fname = result.getString(3);
+			String fullname = fname +" "+ result.getString(4);
+			rec.narrator = fullname;
+			rec.category =  result.getString(5);
+			rec.time =  result.getInt(6);
 			myLibrary.add(rec);
 		}
 		

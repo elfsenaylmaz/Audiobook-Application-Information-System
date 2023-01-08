@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class MyBooksScreen extends JFrame {
 
@@ -26,36 +27,49 @@ public class MyBooksScreen extends JFrame {
 	public String ssn;
 	
 	public MyBooksScreen(String ssn) throws Exception{
-		ArrayList<Record> list = new ArrayList<Record>();
-		list = database.callView(ssn);
+		Control control = new Control();
+		ArrayList<Record> books = new ArrayList<Record>();
+		books = database.callView(ssn);
 		DefaultListModel<String> myBooks = new DefaultListModel<>();
-		for(Record r: list) {
+		for(Record r : books) {
 			String name = r.bookName;
 			String author = r.author;
-			
-			myBooks.addElement(name + "\t \t   " +author);
+			String narrator = r.narrator;
+			String category = r.category;
+			int time = r.time;
+			String line  =   control.stringFormat(name, author, narrator, category, time);
+			myBooks.addElement(line);
 		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(40, 40, 40));
+		contentPane.setForeground(new Color(40, 40, 40));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		@SuppressWarnings("unchecked")
-		JList<String> listBooks = new JList<String>(myBooks);
-		listBooks.setBounds(25, 79, 935, 425);
+	
+		JList<String> listBooks = new JList<String>();
+		listBooks.setBackground(new Color(88, 88, 88));
+		listBooks.setForeground(new Color(255, 255, 255));
+		listBooks.setFont(new Font("Consolas", Font.BOLD, 15));
+		listBooks.setBounds(25, 91, 935, 425);
+		listBooks.setModel(myBooks);
 		contentPane.add(listBooks);
 		
-		JLabel lblMyBooks = new JLabel("MY BOOKS");
+		JLabel lblMyBooks = new JLabel("  MY BOOKS");
+		lblMyBooks.setIcon(new ImageIcon(MyBooksScreen.class.getResource("/icons/audio-book (3).png")));
+		lblMyBooks.setForeground(new Color(236, 65, 0));
 		lblMyBooks.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMyBooks.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
-		lblMyBooks.setBounds(360, 30, 250, 40);
+		lblMyBooks.setFont(new Font("Tw Cen MT", Font.BOLD, 30));
+		lblMyBooks.setBounds(350, 22, 250, 40);
 		contentPane.add(lblMyBooks);
 		
 		JButton btnGoBack = new JButton("");
+		btnGoBack.setBackground(new Color(255, 255, 255));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuScreen menuScreen;
@@ -72,13 +86,20 @@ public class MyBooksScreen extends JFrame {
 		});
 		btnGoBack.setIcon(new ImageIcon(MyBooksScreen.class.getResource("/icons/arrow.png")));
 		btnGoBack.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		btnGoBack.setBounds(25, 10, 44, 30);
+		btnGoBack.setBounds(25, 22, 44, 30);
 		contentPane.add(btnGoBack);
 		
 		JLabel favCategoryLabel = new JLabel("Your Fav Category: ... ");
+		favCategoryLabel.setForeground(new Color(236, 65, 0));
 		favCategoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		favCategoryLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		favCategoryLabel.setBounds(328, 515, 272, 30);
+		favCategoryLabel.setBounds(340, 523, 272, 30);
 		contentPane.add(favCategoryLabel);
+		
+		JLabel lblNewLabel = new JLabel("Book Name                                                  Author                                                 Narrator                                  Category                       Time(min)");
+		lblNewLabel.setForeground(new Color(236, 65, 0));
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		lblNewLabel.setBounds(25, 68, 935, 21);
+		contentPane.add(lblNewLabel);
 	}
 }

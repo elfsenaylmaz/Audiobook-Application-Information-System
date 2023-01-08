@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class BalanceScreen extends JFrame {
 	
@@ -29,9 +30,12 @@ public class BalanceScreen extends JFrame {
 
 
 	public BalanceScreen(String ssn) throws Exception{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BalanceScreen.class.getResource("/icons/audio-book (4).png")));
+		setTitle("BookNook");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 500, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(40, 40, 40));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -39,7 +43,7 @@ public class BalanceScreen extends JFrame {
 		
 		JLabel balanceLabel = new JLabel("100");
 		balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		balanceLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		balanceLabel.setBackground(Color.WHITE);
 		balanceLabel.setOpaque(true);
 		balanceLabel.setBounds(204, 120, 101, 30);
@@ -47,18 +51,22 @@ public class BalanceScreen extends JFrame {
 		
 		
 		JLabel lblCurrentBalanceText = new JLabel("CURRENT BALANCE :\r\n");
+		lblCurrentBalanceText.setForeground(new Color(255, 255, 255));
 		lblCurrentBalanceText.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCurrentBalanceText.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		lblCurrentBalanceText.setBounds(102, 67, 212, 30);
+		lblCurrentBalanceText.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
+		lblCurrentBalanceText.setBounds(111, 64, 212, 30);
 		contentPane.add(lblCurrentBalanceText);
 		
 		JLabel lblCurrentBalance = new JLabel("0");
-		lblCurrentBalance.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		lblCurrentBalance.setForeground(new Color(255, 255, 255));
+		lblCurrentBalance.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		lblCurrentBalance.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCurrentBalance.setBounds(322, 67, 74, 30);
+		lblCurrentBalance.setBounds(331, 64, 74, 30);
 		contentPane.add(lblCurrentBalance);
 		
 		JButton btnPlus = new JButton("+");
+		btnPlus.setForeground(new Color(255, 255, 255));
+		btnPlus.setBackground(new Color(236, 65, 0));
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int tmp = Integer.parseInt(balanceLabel.getText())+10;
@@ -71,6 +79,8 @@ public class BalanceScreen extends JFrame {
 		contentPane.add(btnPlus);
 		
 		JButton btnMinus = new JButton("-");
+		btnMinus.setBackground(new Color(236, 65, 0));
+		btnMinus.setForeground(new Color(255, 255, 255));
 		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int tmp = Integer.parseInt(balanceLabel.getText())-10;
@@ -90,6 +100,8 @@ public class BalanceScreen extends JFrame {
 		contentPane.add(btnMinus);
 		
 		JButton btnNewButton_2 = new JButton("ADD");
+		btnNewButton_2.setBackground(new Color(236, 65, 0));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tmp = lblCurrentBalance.getText();
@@ -98,18 +110,19 @@ public class BalanceScreen extends JFrame {
 				lblCurrentBalance.setText(tmp);
 				
 				try {
-					 db.increaseBalance(tmp2,"4000");     //  user_ssn döndürcez
+					 db.increaseBalance(tmp2,"4000");     //  user_ssn dï¿½ndï¿½rcez
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		btnNewButton_2.setBounds(204, 160, 100, 40);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnGoBack = new JButton("");
+		btnGoBack.setBackground(new Color(255, 255, 255));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuScreen menuScreen;

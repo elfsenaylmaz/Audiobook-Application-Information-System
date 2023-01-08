@@ -133,6 +133,7 @@ public class Sign_upScreen extends JFrame {
 		
 		
 		JComboBox comboBoxDay = new JComboBox();
+		comboBoxDay.setBackground(new Color(255, 255, 255));
 		comboBoxDay.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
 		Object[] days = {"day",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
 		Object[] months = {"month",1,2,3,4,5,6,7,8,9,10,11,12};
@@ -143,12 +144,14 @@ public class Sign_upScreen extends JFrame {
 		getContentPane().add(comboBoxDay);
 		
 		JComboBox comboMonth = new JComboBox();
+		comboMonth.setBackground(new Color(255, 255, 255));
 		comboMonth.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
 		comboMonth.setBounds(366, 198, 78, 32);
 		comboMonth.setModel(new DefaultComboBoxModel(months));
 		getContentPane().add(comboMonth);
 		
 		JComboBox comboYear = new JComboBox();
+		comboYear.setBackground(new Color(255, 255, 255));
 		comboYear.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
 		comboYear.setBounds(443, 198, 78, 32);
 		comboYear.setModel(new DefaultComboBoxModel(years));
@@ -228,6 +231,7 @@ public class Sign_upScreen extends JFrame {
 		getContentPane().add(btnRegister);
 		
 		JButton btnGoBack = new JButton("");
+		btnGoBack.setBackground(new Color(255, 255, 255));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainScreen mainScreen;

@@ -28,6 +28,7 @@ public class Sign_inScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnGoBack = new JButton("");
+		btnGoBack.setBackground(new Color(255, 255, 255));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainScreen mainScreen;
