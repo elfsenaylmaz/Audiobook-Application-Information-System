@@ -139,5 +139,12 @@ public class Database {
 		return category;
 		
 	}
+	
+	public void increaseBalance(int amonut,String user_ssn) throws SQLException{
+		CallableStatement cstmt = connection.prepareCall("{call increaseBalance(?,?)}");
+		cstmt.setInt(2, amonut);
+		cstmt.setString(2,user_ssn);
+		cstmt.execute();
+	}
 
 }

@@ -77,10 +77,10 @@ public class MyBooksScreen extends JFrame {
 		btnGoBack.setBounds(25, 10, 44, 30);
 		contentPane.add(btnGoBack);
 		
-		JLabel lblNewLabel = new JLabel("Your Fav Category: ... ");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		lblNewLabel.setBounds(350, 515, 250, 30);
-		contentPane.add(lblNewLabel);
+		JLabel favCategoryLabel = new JLabel("Your Fav Category: ... ");
+		favCategoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		favCategoryLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		favCategoryLabel.setBounds(328, 515, 272, 30);
+		contentPane.add(favCategoryLabel);
 	}
 }
