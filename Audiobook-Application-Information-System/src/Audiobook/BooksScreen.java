@@ -114,6 +114,7 @@ public class BooksScreen extends JFrame {
 					JOptionPane.showMessageDialog(null,"You must first enter a book name!");
 				}else {
 					try {
+						bookName = control.firstCharacterUpper(bookName);
 						books = database.searchBook(bookName);
 						if(books == null) {
 							JOptionPane.showMessageDialog(null,"No results were found matching your search!");

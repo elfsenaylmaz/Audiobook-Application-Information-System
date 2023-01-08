@@ -60,6 +60,19 @@ public class Control{
     	 return bookName;
     	 
      }
+     
+     public String firstCharacterUpper(String bookName) {
+    	 String[] arrStr = bookName.split(" ");
+    	 String name = "";
+    	 Integer i;
+    	 for(i=0;i<arrStr.length;i++) {
+    		 if(arrStr[i].compareTo("ve") != 0 && arrStr[i].compareTo("veya") != 0){
+    			 arrStr[i] = arrStr[i].substring(0,1).toUpperCase() + arrStr[i].substring(1).toLowerCase();
+    		 }
+    		 name += arrStr[i]+" ";
+    	 }
+    	 return name;
+     }
     
 
 
