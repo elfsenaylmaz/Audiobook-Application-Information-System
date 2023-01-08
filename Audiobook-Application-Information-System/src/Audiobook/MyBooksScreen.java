@@ -11,16 +11,21 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 public class MyBooksScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	public Database database = new Database();
 	private JPanel contentPane;
 	public String ssn;
 	
-	public MyBooksScreen(String ssn) {
+	public MyBooksScreen(String ssn) throws Exception{
+		ArrayList<Record> list = new ArrayList<Record>();
+		list = database.callView(ssn);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -29,7 +34,7 @@ public class MyBooksScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList listBooks = new JList();
+		JList listBooks = new JList(list.toArray());
 		listBooks.setBounds(25, 79, 935, 425);
 		contentPane.add(listBooks);
 		

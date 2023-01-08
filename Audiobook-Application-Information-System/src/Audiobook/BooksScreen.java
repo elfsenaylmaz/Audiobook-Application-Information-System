@@ -26,7 +26,8 @@ public class BooksScreen extends JFrame {
 	private JTextField searchField;
 	public String ssn;
 
-	public BooksScreen(String ssn) throws Exception {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public BooksScreen(String ssn) throws Exception{
 		ArrayList<String> list = new ArrayList<String>();
 		list = database.listCategories();
 		list.add(0, "All");
@@ -43,7 +44,8 @@ public class BooksScreen extends JFrame {
 		categoryComboBox.setBounds(25, 25, 200, 30);
 		contentPane.add(categoryComboBox);
 		
-		JComboBox timeComboBox = new JComboBox<>();
+		
+		JComboBox timeComboBox = new JComboBox(new String[]{"Choose hour length","0-2","2-4","4-6","6-8","8-10","10-12","12-14","14-16","16-18","18-20","20-22","22-24"});
 		timeComboBox.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		timeComboBox.setBounds(232, 25, 200, 30);
 		contentPane.add(timeComboBox);

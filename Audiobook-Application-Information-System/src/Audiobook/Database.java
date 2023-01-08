@@ -4,7 +4,6 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.ArrayList;
 public class Database {
-
     public Connection connection;
 	public Database() throws Exception{
     	SQLConnection SQLconnection = new SQLConnection();
@@ -135,9 +134,11 @@ public class Database {
 		
 		return records;
 	}
+
 	
-	//sadece kategori adýný döndürdüm ona sonra tekrar bakarýz belki numarayý da döndürelim mi diye
-	// sql tarafýndaki fonksiyonda havingde fname deðil ssn kontrol edicek þekilde deðiþiklik yaptým elimizde ssn olduðu için
+	//sadece kategori adï¿½nï¿½ dï¿½ndï¿½rdï¿½m ona sonra tekrar bakarï¿½z belki numarayï¿½ da dï¿½ndï¿½relim mi diye
+	// sql tarafï¿½ndaki fonksiyonda havingde fname deï¿½il ssn kontrol edicek ï¿½ekilde deï¿½iï¿½iklik yaptï¿½m elimizde ssn olduï¿½u iï¿½in
+
 	public String favCategory(String user_ssn) throws SQLException {
 		CallableStatement cstmt = connection.prepareCall("{call favCategory(?,?,?)}");
 		cstmt.registerOutParameter(2, Types.INTEGER);
@@ -156,13 +157,25 @@ public class Database {
 		cstmt.setString(2,user_ssn);
 		cstmt.execute();
 	}
-
 	
-	public void createView(String user_ssn) throws SQLException{
-        CallableStatement cstmt = connection.prepareCall("{call createView(?)}");
-        cstmt.setString(1, user_ssn);
-        cstmt.execute();
-    }
+	public ArrayList<Record> callView(String user_ssn) throws SQLException{
+		ArrayList<Record> myLibrary = new ArrayList<>();
+		String query = "select * from userLibrary where ssn = ?";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, user_ssn);
+		ResultSet result = pstmt.executeQuery();
+		
+		while(result.next()) {
+			Record rec = new Record();
+			rec.bookName =  result.getString(1);
+			rec.author =  result.getString(2);
+			rec.category =  result.getString(3);
+			rec.time =  result.getInt(4);
+			myLibrary.add(rec);
+		}
+		
+		return myLibrary;
+	}
 
 
 }

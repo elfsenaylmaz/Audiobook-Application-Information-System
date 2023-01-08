@@ -66,9 +66,9 @@ public class MenuScreen extends JFrame {
 		JButton btnMyBooks = new JButton("MY BOOKS");
 		btnMyBooks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BooksScreen myBooksScreen;
+				MyBooksScreen myBooksScreen;
 				try {
-					myBooksScreen = new BooksScreen(ssn);
+					myBooksScreen = new MyBooksScreen(ssn);
 					setVisible(false);
 					myBooksScreen.setVisible(true);
 				} catch (Exception e1) {
