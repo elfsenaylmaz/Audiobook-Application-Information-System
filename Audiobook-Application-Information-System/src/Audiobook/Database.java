@@ -1,7 +1,6 @@
 package Audiobook;
 
 import java.sql.*;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -271,5 +270,22 @@ public class Database {
 			return result.getString(1);
 		}
 		return null;
+	}
+	
+	public Record getRentBookInfo (String id) throws SQLException {
+		String query = "SELECT name, author, fname, lname, time, category, audience FROM books b, narrates n, narrator WHERE b.id = bookid AND nssn = ssn";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		ResultSet result = pstmt.executeQuery();
+		Record record = new Record();
+		while(result.next()) {
+			record.bookName = result.getString(1);
+			record.author = result.getString(2);
+			record.narrator = result.getString(3) + " " + result.getString(4);
+			record.time = result.getInt(5);
+			record.category = result.getString(6);
+			record.narratorAudience = result.getInt(7);
+			
+		}
+		return record;
 	}
 }
