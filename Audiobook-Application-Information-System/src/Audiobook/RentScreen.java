@@ -20,9 +20,10 @@ public class RentScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	Database database = new Database();
 	public String ssn;
 	
-	public RentScreen(String ssn) {
+	public RentScreen(String ssn) throws Exception {
 		setTitle("BookNook");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RentScreen.class.getResource("/icons/audio-book (4).png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +86,7 @@ public class RentScreen extends JFrame {
 		lblHowManyDays.setBounds(527, 249, 311, 30);
 		contentPane.add(lblHowManyDays);
 		
-		JLabel lblCurrentBalance = new JLabel("CURRENT BALANCE: 0000\r\n");
+		JLabel lblCurrentBalance = new JLabel("CURRENT BALANCE: " + String.format("%d", database.getBalance(ssn) + " TL "));
 		lblCurrentBalance.setForeground(new Color(236, 65, 0));
 		lblCurrentBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCurrentBalance.setFont(new Font("Tw Cen MT", Font.BOLD, 20));

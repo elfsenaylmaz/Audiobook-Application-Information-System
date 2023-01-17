@@ -17,9 +17,10 @@ import javax.swing.ImageIcon;
 public class MenuScreen extends JFrame {
 	public String ssn;
 	private static final long serialVersionUID = 1L;
+	public Database database = new Database();
 	private JPanel contentPane;
 
-	public MenuScreen(String ssn) {
+	public MenuScreen(String ssn) throws Exception {
 		setTitle("BookNook");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuScreen.class.getResource("/icons/audio-book (4).png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,17 +95,17 @@ public class MenuScreen extends JFrame {
 		btnMyBooks.setBounds(320, 230, 300, 50);
 		contentPane.add(btnMyBooks);
 		
-		JLabel lblWelcome = new JLabel("WELCOME, USER");
+		JLabel lblWelcome = new JLabel("WELCOME, " + database.getName(ssn).toUpperCase());
 		lblWelcome.setForeground(new Color(236, 65, 0));
 		lblWelcome.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		lblWelcome.setBounds(42, 68, 300, 40);
 		contentPane.add(lblWelcome);
 		
-		JLabel lblCurBal = new JLabel("CURRENT BALANCE: 0000");
+		JLabel lblCurBal = new JLabel("CURRENT BALANCE: " + String.format("%d", database.getBalance(ssn)) + " TL  ");
 		lblCurBal.setForeground(new Color(236, 65, 0));
 		lblCurBal.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		lblCurBal.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCurBal.setBounds(651, 68, 300, 40);
+		lblCurBal.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCurBal.setBounds(639, 68, 312, 40);
 		contentPane.add(lblCurBal);
 		
 		JButton btnLogOut = new JButton("LOG OUT");

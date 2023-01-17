@@ -23,7 +23,7 @@ import java.awt.Toolkit;
 
 public class BalanceScreen extends JFrame {
 	
-	Database db = new Database();
+	Database database = new Database();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public String ssn;
@@ -57,7 +57,7 @@ public class BalanceScreen extends JFrame {
 		lblCurrentBalanceText.setBounds(111, 64, 212, 30);
 		contentPane.add(lblCurrentBalanceText);
 		
-		JLabel lblCurrentBalance = new JLabel("0");
+		JLabel lblCurrentBalance = new JLabel(String.format("%d", database.getBalance(ssn)));
 		lblCurrentBalance.setForeground(new Color(255, 255, 255));
 		lblCurrentBalance.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		lblCurrentBalance.setHorizontalAlignment(SwingConstants.LEFT);
@@ -110,7 +110,7 @@ public class BalanceScreen extends JFrame {
 				lblCurrentBalance.setText(tmp);
 				
 				try {
-					 db.increaseBalance(tmp2,"4000");     //  user_ssn d�nd�rcez
+					 database.increaseBalance(tmp2,"4000");     //  user_ssn d�nd�rcez
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
