@@ -30,6 +30,7 @@ public class MyBooksScreen extends JFrame {
 	public MyBooksScreen(String ssn) throws Exception{
 		setTitle("BookNook");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MyBooksScreen.class.getResource("/icons/audio-book (4).png")));
+		
 		Control control = new Control();
 		ArrayList<Record> books = new ArrayList<Record>();
 		books = database.callView(ssn);
@@ -43,7 +44,6 @@ public class MyBooksScreen extends JFrame {
 			String line  =   control.stringFormat(name, author, narrator, category, time);
 			myBooks.addElement(line);
 		}
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1000, 600);
@@ -92,7 +92,7 @@ public class MyBooksScreen extends JFrame {
 		btnGoBack.setBounds(25, 22, 44, 30);
 		contentPane.add(btnGoBack);
 		
-		JLabel favCategoryLabel = new JLabel("Your Fav Category: ... ");
+		JLabel favCategoryLabel = new JLabel("Your Favorite Category: " + database.favCategory(ssn));
 		favCategoryLabel.setForeground(new Color(236, 65, 0));
 		favCategoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		favCategoryLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));

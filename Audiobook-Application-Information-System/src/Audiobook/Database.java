@@ -164,7 +164,7 @@ public class Database {
 	
 	public ArrayList<Record> callView(String user_ssn) throws SQLException{
 		ArrayList<Record> myLibrary = new ArrayList<>();
-		String query = "select * from userLibrary where ssn = ? except select * from userLibrary where isExpired = ?";
+		String query = "select * from userLibrary where ssn = ? except select name,author,fname,lname,category,time,ssn,u.id from userLibrary u, rental where bookid = u.id AND isexpired = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.setString(1, user_ssn);
 		pstmt.setInt(2, 1);
@@ -315,7 +315,7 @@ public class Database {
 	}
 	
 	public void setExpired(String id) throws SQLException {
-		String query = "update rental set isExpired = 1 where id = ?";
+		String query = "update rental set isexpired = 1 where id = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.setString(1,id);
 		pstmt.executeUpdate();
