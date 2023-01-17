@@ -264,8 +264,9 @@ public class Database {
 	}
 	
 	public String findBookId(String bookName) throws Exception{
-		String query = "SELECT id FROM books WHERE name = bookName";
+		String query = "SELECT id FROM books WHERE name = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, bookName);
 		ResultSet result = pstmt.executeQuery();
 		
 		while(result.next()) {
@@ -286,7 +287,6 @@ public class Database {
 			record.time = result.getInt(5);
 			record.category = result.getString(6);
 			record.narratorAudience = result.getInt(7);
-			
 		}
 		return record;
 	}
@@ -300,14 +300,13 @@ public class Database {
 			Date dt = result.getDate(1);
 			int limit = result.getInt(2);
 			String id = result.getString(3);
+			
 			if(LocalDate.now() == dt.toLocalDate().plusDays(limit)) {
+				
 				setExpired(id);
 			}
-	
 		}
-		
 	}
-	
 	
 	public void setExpired(String id) throws SQLException {
 		String query = "update rental set isExpired = 1 where id = ?";
