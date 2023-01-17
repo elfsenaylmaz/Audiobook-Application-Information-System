@@ -123,14 +123,16 @@ public class BooksScreen extends JFrame {
 		btnSearch.setIcon(new ImageIcon(BooksScreen.class.getResource("/icons/search (1).png")));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String bookName = null;
 				ArrayList<Record> books = new ArrayList<Record>();
 				Control control = new Control();
-				String bookName = searchField.getText();
+				bookName = searchField.getText();
 				if(bookName.compareTo("") == 0) {
 					JOptionPane.showMessageDialog(null,"You must first enter a book name!");
 				}else {
 					try {
-						bookName = control.firstCharacterUpper(bookName);
+						//bookName = control.firstCharacterUpper(bookName);
+						System.out.println(bookName);
 						books = database.searchBook(bookName);
 						if(books == null) {
 							JOptionPane.showMessageDialog(null,"No results were found matching your search!");
