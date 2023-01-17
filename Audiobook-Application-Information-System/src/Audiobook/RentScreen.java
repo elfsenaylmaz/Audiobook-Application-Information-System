@@ -30,9 +30,6 @@ public class RentScreen extends JFrame {
 		Record book = database.getRentBookInfo(bookId);
 		Locale trLoc = new Locale("tr-TR");
 		
-		System.out.println(bookId);
-		System.out.println(book.bookName);
-		
 		setTitle("BookNook");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RentScreen.class.getResource("/icons/audio-book (4).png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,7 +118,6 @@ public class RentScreen extends JFrame {
         btnRent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    System.out.println(comboDays.getSelectedIndex());
                     String func =database.rental(ssn, bookId, comboDays.getSelectedIndex()+1);
                     if(func != null) {
                         JOptionPane.showMessageDialog(null,func);

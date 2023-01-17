@@ -87,7 +87,6 @@ public class Database {
 		stmt.setInt(4,dayLimit);
 		stmt.setInt(5,price);
 		stmt.executeUpdate(); 
-		System.out.println(stmt.getWarnings());
 		if(stmt.getWarnings() != null){
 			return stmt.getWarnings().getMessage();
 		}
@@ -165,9 +164,10 @@ public class Database {
 	
 	public ArrayList<Record> callView(String user_ssn) throws SQLException{
 		ArrayList<Record> myLibrary = new ArrayList<>();
-		String query = "select * from userLibrary where ssn = ?";
+		String query = "select * from userLibrary where ssn = ? except select * from userLibrary where isExpired = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.setString(1, user_ssn);
+		pstmt.setInt(2, 1);
 		ResultSet result = pstmt.executeQuery();
 		
 		while(result.next()) {

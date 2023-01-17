@@ -10,8 +10,7 @@ public class Main {
 		
 		Database database = new Database();
 		database.isExpired();
-		System.out.println("aaaaa");
-
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
