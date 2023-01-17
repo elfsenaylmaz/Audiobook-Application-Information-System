@@ -22,8 +22,8 @@ public class RentScreen extends JFrame {
 	private JPanel contentPane;
 	Database database = new Database();
 	public String ssn;
-	
-	public RentScreen(String ssn) throws Exception {
+	public String bookId;
+	public RentScreen(String ssn, String bookId) throws Exception {
 		setTitle("BookNook");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RentScreen.class.getResource("/icons/audio-book (4).png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

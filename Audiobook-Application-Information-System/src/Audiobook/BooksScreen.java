@@ -197,8 +197,7 @@ public class BooksScreen extends JFrame {
 				Control control = new Control();
 				try {
 					String name = control.getName(listBooks.getSelectedValue().toString());
-					System.out.println(name);
-					rentScreen = new RentScreen(ssn);
+					rentScreen = new RentScreen(ssn,database.findBookId(name));
 					rentScreen.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
