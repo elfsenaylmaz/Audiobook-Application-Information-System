@@ -139,9 +139,6 @@ public class Database {
 		return records;
 	}
 
-	
-	
-
 	public String favCategory(String user_ssn) throws SQLException {
 		CallableStatement cstmt = connection.prepareCall("{call favCategory(?,?,?)}");
 		cstmt.registerOutParameter(2, Types.INTEGER);
@@ -265,7 +262,14 @@ public class Database {
 		return books;
 	}
 	
-	
-	
-
+	public String findBookId(String bookName) throws Exception{
+		String query = "SELECT id FROM books WHERE name = bookName";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		ResultSet result = pstmt.executeQuery();
+		
+		while(result.next()) {
+			return result.getString(1);
+		}
+		return null;
+	}
 }
