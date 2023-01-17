@@ -76,11 +76,30 @@ public class Control{
     		 if(arrStr[i].compareTo("ve") != 0 && arrStr[i].compareTo("veya") != 0){
     			 arrStr[i] = arrStr[i].substring(0,1).toUpperCase() + arrStr[i].substring(1).toLowerCase();
     		 }
-    		 name += arrStr[i]+" ";
+    		 if(i != arrStr.length-1) {
+    			  name += arrStr[i]+" ";
+    		 }else {
+    			 name += arrStr[i];
+    		 }
+    		
     	 }
+    	
     	 return name;
      }
     
+     
+     public String getName(String line){
+    	 String name;
+    	 int i=34;
+    	
+    	while(line.charAt(i) == ' ') {
+    		i--;
+    	}
+    	 
+    	name = line.substring(0,i+1);
+    	
+		return name;
+     }
 
 
 

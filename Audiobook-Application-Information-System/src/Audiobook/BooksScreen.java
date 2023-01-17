@@ -194,7 +194,10 @@ public class BooksScreen extends JFrame {
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RentScreen rentScreen;
+				Control control = new Control();
 				try {
+					String name = control.getName(listBooks.getSelectedValue().toString());
+					System.out.println(name);
 					rentScreen = new RentScreen(ssn);
 					rentScreen.setVisible(true);
 				} catch (Exception e1) {
