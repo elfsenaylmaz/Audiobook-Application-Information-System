@@ -307,8 +307,7 @@ public class Database {
 			int limit = result.getInt(2);
 			String id = result.getString(3);
 			
-			if(LocalDate.now() == dt.toLocalDate().plusDays(limit)) {
-				
+			if(LocalDate.now().compareTo(dt.toLocalDate().plusDays(limit)) == 0) {
 				setExpired(id);
 			}
 		}
