@@ -69,7 +69,7 @@ public class Database {
 		
 	}
 	
-	public int rental(String user_ssn, String bookid, int dayLimit) throws Exception{
+	public String rental(String user_ssn, String bookid, int dayLimit) throws Exception{
 		CallableStatement cstmt = connection.prepareCall("{? = call calculateprice(?,?)}");
 		cstmt.registerOutParameter(1, Types.INTEGER);
 		cstmt.setInt(2, dayLimit);
@@ -86,8 +86,12 @@ public class Database {
 		stmt.setDate(3,date);
 		stmt.setInt(4,dayLimit);
 		stmt.setInt(5,price);
-		return stmt.executeUpdate(); //1 se eklendi 0 sa eklenemedi
-		
+		stmt.executeUpdate(); 
+		System.out.println(stmt.getWarnings());
+		if(stmt.getWarnings() != null){
+			return stmt.getWarnings().getMessage();
+		}
+		return null;
 	}
 	
 	public ArrayList<String> listCategories() throws Exception{
@@ -276,8 +280,9 @@ public class Database {
 	}
 	
 	public Record getRentBookInfo (String id) throws SQLException {
-		String query = "SELECT name, author, fname, lname, time, category, audience FROM books b, narrates n, narrator WHERE b.id = bookid AND nssn = ssn";
+		String query = "SELECT name, author, fname, lname, time, dailyprice, category, audience FROM books b, narrates n, narrator WHERE b.id = ? AND nssn = ssn AND b.id = bookid";
 		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1, id);
 		ResultSet result = pstmt.executeQuery();
 		Record record = new Record();
 		while(result.next()) {
@@ -285,8 +290,9 @@ public class Database {
 			record.author = result.getString(2);
 			record.narrator = result.getString(3) + " " + result.getString(4);
 			record.time = result.getInt(5);
-			record.category = result.getString(6);
-			record.narratorAudience = result.getInt(7);
+			record.dailyPrice = result.getInt(6);
+			record.category = result.getString(7);
+			record.narratorAudience = result.getInt(8);
 		}
 		return record;
 	}

@@ -196,22 +196,29 @@ public class BooksScreen extends JFrame {
 				RentScreen rentScreen;
 				Control control = new Control();
 				try {
-					String name = control.getName(listBooks.getSelectedValue().toString());
-					rentScreen = new RentScreen(ssn,database.findBookId(name));
-					rentScreen.setVisible(true);
+					if(listBooks.getSelectedValue() != null) {
+						String name = control.getName(listBooks.getSelectedValue().toString());
+						rentScreen = new RentScreen(ssn,database.findBookId(name));
+						rentScreen.setVisible(true);
+						dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Select a book first!");
+					}
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
-				dispose();
+				
 			}
 		});
 		btnBuy.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
 		btnBuy.setBounds(848, 518, 114, 30);
 		contentPane.add(btnBuy);
 		
-		JLabel lblNewLabel = new JLabel("Book Name                                                  Author                                                 Narrator                                  Category                       Time(min)");
+		JLabel lblNewLabel = new JLabel("Book Name                                                  Author                                                 Narrator                                  Category                       Time(h)");
 		lblNewLabel.setForeground(new Color(236, 65, 0));
 		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		lblNewLabel.setBounds(25, 65, 935, 21);

@@ -99,7 +99,7 @@ public class MyBooksScreen extends JFrame {
 		favCategoryLabel.setBounds(340, 523, 272, 30);
 		contentPane.add(favCategoryLabel);
 		
-		JLabel lblNewLabel = new JLabel("Book Name                                                  Author                                                 Narrator                                  Category                       Time(min)");
+		JLabel lblNewLabel = new JLabel("Book Name                                                  Author                                                 Narrator                                  Category                       Time(h)");
 		lblNewLabel.setForeground(new Color(236, 65, 0));
 		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		lblNewLabel.setBounds(25, 68, 935, 21);

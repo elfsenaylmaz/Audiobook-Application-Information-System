@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
@@ -133,6 +134,25 @@ public class MenuScreen extends JFrame {
 		btnDeleteUser.setBackground(new Color(236, 65, 0));
 		btnDeleteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirmed = JOptionPane.showConfirmDialog(null, 
+				"Are you sure you want to delete your account?", "Confirmation Message Box", JOptionPane.YES_NO_OPTION);
+				if (confirmed == JOptionPane.YES_OPTION) {
+					try {
+						database.deleteAccount(ssn);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					MainScreen mainScreen;
+					try {
+						mainScreen = new MainScreen();
+						setVisible(false);
+						mainScreen.setVisible(true);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					dispose();;
+				}
 			}
 		});
 		btnDeleteUser.setFont(new Font("Tw Cen MT", Font.BOLD, 20));

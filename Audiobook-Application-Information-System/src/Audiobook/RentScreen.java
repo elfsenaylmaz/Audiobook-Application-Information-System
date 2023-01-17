@@ -27,9 +27,11 @@ public class RentScreen extends JFrame {
 	public String ssn;
 	public String bookId;
 	public RentScreen(String ssn, String bookId) throws Exception {
-		Record book = new Record();
-		book = database.getRentBookInfo(bookId);
+		Record book = database.getRentBookInfo(bookId);
 		Locale trLoc = new Locale("tr-TR");
+		
+		System.out.println(bookId);
+		System.out.println(book.bookName);
 		
 		setTitle("BookNook");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RentScreen.class.getResource("/icons/audio-book (4).png")));
@@ -88,7 +90,7 @@ public class RentScreen extends JFrame {
 		lblCategory.setBounds(70, 238, 400, 40);
 		contentPane.add(lblCategory);
 		
-		JLabel lblAudience = new JLabel("AUDIENCE:" + String.format("%d", book.narratorAudience));
+		JLabel lblAudience = new JLabel("NARRATOR AUDIENCE: " + String.format("%d", book.narratorAudience));
 		lblAudience.setForeground(new Color(236, 65, 0));
 		lblAudience.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
 		lblAudience.setBounds(70, 438, 400, 40);
@@ -116,18 +118,25 @@ public class RentScreen extends JFrame {
 		contentPane.add(lblCurrentBalance);
 		
 		JButton btnRent = new JButton("RENT");
-		btnRent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-                    if(database.rental(ssn, bookId, comboDays.getSelectedIndex()) == 0) {
-                        JOptionPane.showMessageDialog(null,"Your balance is not enough to rent this book");
+        btnRent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    System.out.println(comboDays.getSelectedIndex());
+                    String func =database.rental(ssn, bookId, comboDays.getSelectedIndex()+1);
+                    if(func != null) {
+                        JOptionPane.showMessageDialog(null,func);
+                    }
+                    else {
+                    	lblCurrentBalance.setText("CURRENT BALANCE: " + String.format("%d", database.getBalance(ssn)) + " TL  ");
+                    	book.narratorAudience++;
+                    	lblAudience.setText("NARRATOR AUDIENCE: " + String.format("%d", book.narratorAudience));
                     }
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-			}
-		});
+            }
+        });
 		btnRent.setBackground(new Color(236, 65, 0));
 		btnRent.setForeground(new Color(255, 255, 255));
 		btnRent.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
