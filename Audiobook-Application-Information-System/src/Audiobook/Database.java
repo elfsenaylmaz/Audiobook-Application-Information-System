@@ -3,6 +3,8 @@ package Audiobook;
 import java.sql.*;
 import java.sql.Date;
 import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 public class Database {
     public Connection connection;
 	public Database() throws Exception{
@@ -138,8 +140,7 @@ public class Database {
 	}
 
 	
-	//sadece kategori ad�n� d�nd�rd�m ona sonra tekrar bakar�z belki numaray� da d�nd�relim mi diye
-	// sql taraf�ndaki fonksiyonda havingde fname de�il ssn kontrol edicek �ekilde de�i�iklik yapt�m elimizde ssn oldu�u i�in
+	
 
 	public String favCategory(String user_ssn) throws SQLException {
 		CallableStatement cstmt = connection.prepareCall("{call favCategory(?,?,?)}");
@@ -238,6 +239,32 @@ public class Database {
 		}
 		return null;
 	}
+	
+	
+	public DefaultListModel<String> allBooks() throws Exception{
+		
+		String query = "SELECT name, author, fname, lname, time, category FROM books b, narrates n, narrator WHERE b.id = bookid AND nssn = ssn;";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		ResultSet result = pstmt.executeQuery();
+
+		DefaultListModel<String> books = new DefaultListModel<String>();
+		Control control = new Control();
+		while(result.next()) {
+			
+			String name = result.getString(1);
+			String author = result.getString(2);
+			String narrator = result.getString(3) + " " + result.getString(4);
+			Integer time = result.getInt(5);
+			String category = result.getString(6);
+		
+			String line  =   control.stringFormat(name, author, narrator, category, time);
+			books.addElement(line);
+			
+		}
+		
+		return books;
+	}
+	
 	
 	
 

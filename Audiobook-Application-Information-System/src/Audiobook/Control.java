@@ -55,8 +55,15 @@ public class Control{
     	 for(i=category.length();i<20;i++) {
     		 bookName += " ";
     	 }
-    	 
-    	 bookName += ""+time+"";
+    	 int hour  = time/60;
+    	 int min = time - 60*hour;
+    	 String hour2 = new String();
+    	 if(min != 0) {
+    		 hour2 = hour + "." + min;
+    	 }else {
+    		 hour2 = hour +"";
+    	 }
+    	 bookName += ""+hour2+"";
     	 return bookName;
     	 
      }

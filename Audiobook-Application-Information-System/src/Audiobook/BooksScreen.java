@@ -56,6 +56,8 @@ public class BooksScreen extends JFrame {
 		categoryComboBox.setBounds(25, 25, 200, 30);
 		contentPane.add(categoryComboBox);
 		
+		DefaultListModel<String> books = new DefaultListModel<String>();
+		books = database.allBooks();
 		
 		JComboBox timeComboBox = new JComboBox(new String[]{"Choose hour length","0-2","2-4","4-6","6-8","8-10","10-12","12-14","14-16","16-18","18-20","20-22","22-24"});
 		timeComboBox.setBackground(new Color(40, 40, 40));
@@ -65,6 +67,8 @@ public class BooksScreen extends JFrame {
 		contentPane.add(timeComboBox);
 		
 		JList listBooks = new JList();
+		listBooks.setModel(books);
+		
 		listBooks.setForeground(new Color(255, 255, 255));
 		listBooks.setBackground(new Color(88, 88, 88));
 		listBooks.setBounds(25, 84, 937, 424);
@@ -137,7 +141,7 @@ public class BooksScreen extends JFrame {
 						if(books == null) {
 							JOptionPane.showMessageDialog(null,"No results were found matching your search!");
 						}else {
-							DefaultListModel<String> filterBooks = new DefaultListModel<String>();
+							DefaultListModel<String> searchBooks = new DefaultListModel<String>();
 							for(Record r : books) {
 								String name = r.bookName;
 								String author = r.author;
@@ -145,10 +149,9 @@ public class BooksScreen extends JFrame {
 								String category = r.category;
 								int time = r.time;
 								String line  =   control.stringFormat(name, author, narrator, category, time);
-								System.out.println(line);
-								filterBooks.addElement(line);
+								searchBooks.addElement(line);
 							}
-							listBooks.setModel(filterBooks);
+							listBooks.setModel(searchBooks);
 						}
 						
 					} catch (Exception e1) {
