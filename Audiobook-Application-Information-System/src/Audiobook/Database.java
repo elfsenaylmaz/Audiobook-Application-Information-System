@@ -292,18 +292,29 @@ public class Database {
 	}
 	
 	public void isExpired() throws SQLException {
-		String query = "select rentday, daylimit from rental";
+		String query = "select rentday, daylimit, id from rental";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		ResultSet result = pstmt.executeQuery();
 		
 		while(result.next()) {
 			Date dt = result.getDate(1);
 			int limit = result.getInt(2);
-			if(LocalDate.now() != dt.toLocalDate().plusDays(limit)) {
-				System.out.println("a");
+			String id = result.getString(3);
+			if(LocalDate.now() == dt.toLocalDate().plusDays(limit)) {
+				setExpired(id);
 			}
 	
 		}
 		
 	}
+	
+	
+	public void setExpired(String id) throws SQLException {
+		String query = "update rental set isExpired = 1 where id = ?";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		pstmt.setString(1,id);
+		pstmt.executeUpdate();
+
+	}
+	
 }
