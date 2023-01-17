@@ -203,7 +203,7 @@ public class Sign_upScreen extends JFrame {
 						java.sql.Date sqlDate = new Date(date1.getTime()); 
 						ssn = database.userRegister(name.getText(), surname.getText(),username.getText() , email.getText() , password.getText(),sqlDate);
 						if(ssn != null) {
-							JOptionPane.showMessageDialog(null,"Registration successful, log in");
+							JOptionPane.showMessageDialog(null,"Registration successful!");
 							try {
 								menu = new MenuScreen(ssn);
 								setVisible(false);
