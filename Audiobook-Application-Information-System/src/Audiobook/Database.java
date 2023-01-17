@@ -1,8 +1,10 @@
 package Audiobook;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 import javax.swing.DefaultListModel;
 public class Database {
     public Connection connection;
@@ -287,5 +289,21 @@ public class Database {
 			
 		}
 		return record;
+	}
+	
+	public void isExpired() throws SQLException {
+		String query = "select rentday, daylimit from rental";
+		PreparedStatement pstmt = connection.prepareStatement(query);
+		ResultSet result = pstmt.executeQuery();
+		
+		while(result.next()) {
+			Date dt = result.getDate(1);
+			int limit = result.getInt(2);
+			if(LocalDate.now() != dt.toLocalDate().plusDays(limit)) {
+				System.out.println("a");
+			}
+	
+		}
+		
 	}
 }
