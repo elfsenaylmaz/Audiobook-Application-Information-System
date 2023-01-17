@@ -86,7 +86,7 @@ public class RentScreen extends JFrame {
 		lblHowManyDays.setBounds(527, 249, 311, 30);
 		contentPane.add(lblHowManyDays);
 		
-		JLabel lblCurrentBalance = new JLabel("CURRENT BALANCE: " + String.format("%d", database.getBalance(ssn) + " TL "));
+		JLabel lblCurrentBalance = new JLabel("CURRENT BALANCE: " + String.format("%d", database.getBalance(ssn)) + " TL  ");
 		lblCurrentBalance.setForeground(new Color(236, 65, 0));
 		lblCurrentBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCurrentBalance.setFont(new Font("Tw Cen MT", Font.BOLD, 20));

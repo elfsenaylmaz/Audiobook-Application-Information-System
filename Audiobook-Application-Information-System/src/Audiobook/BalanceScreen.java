@@ -110,7 +110,7 @@ public class BalanceScreen extends JFrame {
 				lblCurrentBalance.setText(tmp);
 				
 				try {
-					 database.increaseBalance(tmp2,"4000");     //  user_ssn d�nd�rcez
+					 database.increaseBalance(Integer.parseInt(balanceLabel.getText()), ssn);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

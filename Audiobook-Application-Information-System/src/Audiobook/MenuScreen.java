@@ -98,14 +98,14 @@ public class MenuScreen extends JFrame {
 		JLabel lblWelcome = new JLabel("WELCOME, " + database.getName(ssn).toUpperCase());
 		lblWelcome.setForeground(new Color(236, 65, 0));
 		lblWelcome.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
-		lblWelcome.setBounds(42, 68, 300, 40);
+		lblWelcome.setBounds(42, 68, 318, 40);
 		contentPane.add(lblWelcome);
 		
 		JLabel lblCurBal = new JLabel("CURRENT BALANCE: " + String.format("%d", database.getBalance(ssn)) + " TL  ");
 		lblCurBal.setForeground(new Color(236, 65, 0));
 		lblCurBal.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		lblCurBal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCurBal.setBounds(639, 68, 312, 40);
+		lblCurBal.setBounds(508, 68, 443, 40);
 		contentPane.add(lblCurBal);
 		
 		JButton btnLogOut = new JButton("LOG OUT");
