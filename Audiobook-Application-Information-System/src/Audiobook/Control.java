@@ -2,12 +2,6 @@ package Audiobook;
 
 import java.util.regex.*;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Color;
-import java.util.Date;
-
 public class Control{
 
     public Control(){

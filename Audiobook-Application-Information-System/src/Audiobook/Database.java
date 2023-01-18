@@ -2,9 +2,7 @@ package Audiobook;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.DefaultListModel;
 public class Database {
     public Connection connection;
@@ -149,7 +147,6 @@ public class Database {
 		cstmt.registerOutParameter(3, Types.VARCHAR);
 		cstmt.setString(1,user_ssn);
 		cstmt.execute();
-		int num = cstmt.getInt(2);
 		String category = cstmt.getString(3);
 		return category;
 		
@@ -164,7 +161,9 @@ public class Database {
 	
 	public ArrayList<Record> callView(String user_ssn) throws SQLException{
 		ArrayList<Record> myLibrary = new ArrayList<>();
-		String query = "select * from userLibrary where ssn = ? except select name,author,fname,lname,category,time,ssn,u.id from userLibrary u, rental where bookid = u.id AND isexpired = ?";
+		String query = "select * from userLibrary where ssn = ? "
+					 + "except select name,author,fname,lname,category,time,ssn,u.id "
+				     + "from userLibrary u, rental where bookid = u.id AND isexpired = ?";
 		PreparedStatement pstmt = connection.prepareStatement(query);
 		pstmt.setString(1, user_ssn);
 		pstmt.setInt(2, 1);

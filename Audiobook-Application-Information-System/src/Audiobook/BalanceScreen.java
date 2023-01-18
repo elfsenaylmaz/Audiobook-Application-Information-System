@@ -1,7 +1,5 @@
 package Audiobook;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,9 +8,6 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -89,8 +84,7 @@ public class BalanceScreen extends JFrame {
 					balanceLabel.setText(tmp2);
 				}
 				else {
-					JOptionPane message  = new JOptionPane();
-					message.showMessageDialog(null, "Invalid balance entry!");
+					JOptionPane.showMessageDialog(null, "Invalid balance entry!");
 				}
 				
 			}

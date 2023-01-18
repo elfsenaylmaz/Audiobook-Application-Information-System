@@ -1,17 +1,12 @@
 package Audiobook;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.ScrollPane;
-import java.awt.Scrollbar;
 import javax.swing.JComboBox;
 import java.awt.Font;
 
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
